@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fi fi-rr-users-alt"></i> Funcionários
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'register_person' %}"><i class="fi fi-rr-user-add"></i> Cadastrar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'employee' %}"><i class="fi fi-rr-search"></i> Consultar</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fi fi-rr-pencil"></i> Editar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
+            </div>
+        </div>
+    </nav>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Cadastrar Funcionario</h2>
+        <table>
+
+            {{ new_person_form.as_table }}
+
+        </table>
+        <br>
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <input type="reset" value="Limpar Campos" class="btn btn-secondary">
+    </form>
+
+{% endblock %}

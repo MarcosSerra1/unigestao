@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br>
+    <h3 style="text-align: center;"> <strong> Listagem de Funcionários </strong> </h3>
+    <br>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for person in persons %}
+                <tr>
+                    <th scope="row">{{ person.id }}</th>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.cpf }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+
+{% endblock %}

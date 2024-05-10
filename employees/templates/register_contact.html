@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Cadastrar Contatos</h2>
+        <table>
+
+            {{ new_contact_form.as_table }}
+
+        </table>
+        <br>
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <input type="reset" value="Limpar Campos" class="btn btn-secondary">
+    </form>
+
+{% endblock %}
