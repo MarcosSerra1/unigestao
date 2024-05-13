@@ -8,7 +8,7 @@ class SexAdm(admin.ModelAdmin):
 
 
 class PersonAdm(admin.ModelAdmin):
-    list_display = ('name', 'cpf', 'rg', 'birth_date', 'sex', 'email')
+    list_display = ('name', 'cpf', 'birth_date', 'sex', 'email', 'name_mother')
     search_fields = ('name',)
 
 

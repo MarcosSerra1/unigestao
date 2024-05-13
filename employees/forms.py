@@ -10,13 +10,6 @@ class PersonModelForm(forms.ModelForm):
         model = Person
         fields = '__all__'
 
-    name = forms.CharField(label='Nome', max_length=200)
-    cpf = forms.CharField(label='CPF', max_length=15)
-    rg = forms.CharField(label='RG', max_length=15)
-    birth_date = forms.DateField(label='Data de Nascimento', )
-    sex = forms.ModelChoiceField(label='Sexo', queryset=Sex.objects.all())
-    email = forms.EmailField(label='E-mail')
-
     def clean_name(self):
         name = self.cleaned_data.get('name')
         name = substituir_caracteres_especiais(name)
@@ -42,6 +35,8 @@ class PersonModelForm(forms.ModelForm):
         instance = super().save(commit=False)
         # Converte o nome para maiúsculas
         instance.name = instance.name.upper()
+        # Converte o nome da mãe para maiúsculas
+        instance.name_mother = instance.name_mother.upper()
         # Converte o e-mail para minúsculas
         instance.email = instance.email.lower()
         # Salva o objeto no banco de dados se commit for True
@@ -56,7 +51,7 @@ class AddressModelForm(forms.ModelForm):
         model = Address
         fields = '__all__'
 
-    employee = forms.ModelChoiceField(Person.objects.all(), label='Funcionarios')
+    employee = forms.ModelChoiceField(Person.objects.all(), label='Funcionários')
     postal_code = forms.CharField(label='CEP', max_length=20)
     street = forms.CharField(label='Rua', max_length=255)
     number = forms.CharField(label='Número', max_length=10)
@@ -75,6 +70,17 @@ class ContactInfoModelForm(forms.ModelForm):
     emergency_contact_name = forms.CharField(label='Nome do Contato de Emergência', max_length=200)
     emergency_contact_number = forms.CharField(label='Número do Contato de Emergência', max_length=15)
 
+    def save(self, commit=True):
+        # Obtenha uma instância do objeto do modelo, mas não o salve ainda
+        instance = super().save(commit=False)
+        # Converte o nome do titular para maiúsculas
+        instance.emergency_contact_name = instance.emergency_contact_name.upper()
+        # Salva o objeto no banco de dados se commit for True
+        if commit:
+            instance.save()
+        return instance
+
+
 
 # Form Forma de pagamento
 class FormOfPaymentModelForm(forms.ModelForm):
@@ -87,3 +93,13 @@ class FormOfPaymentModelForm(forms.ModelForm):
     bank = forms.ModelChoiceField(label='Banco', queryset=Bank.objects.all())
     type_pix = forms.ModelChoiceField(label='Tipo de Pix', queryset=TypePix.objects.all())
     recipient_name = forms.CharField(label='Nome do Titular', max_length=200, required=False)
+
+    def save(self, commit=True):
+        # Obtenha uma instância do objeto do modelo, mas não o salve ainda
+        instance = super().save(commit=False)
+        # Converte o nome do titular para maiúsculas
+        instance.recipient_name = instance.recipient_name.upper()
+        # Salva o objeto no banco de dados se commit for True
+        if commit:
+            instance.save()
+        return instance

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
 
@@ -10,11 +10,28 @@ def home_view(request):
 
 
 def list_persons_view(request):
-    persons = Person.objects.all()
+    persons = Person.objects.all().order_by('id')
+    search = request.GET.get('search')
+
+    if search:
+        persons = Person.objects.filter(name__icontains=search)
+
     return render(
         request=request,
         template_name='list_persons.html',
         context={ 'persons': persons })
+
+
+# Define uma def de visualização para exibir os detalhes de um funcionário.
+# Esta classe herda da classe DetailView do Django, que é uma visualização genérica para exibir os detalhes de um único objeto.
+def employee_detail_view(request, pk):
+    # Recupera o funcionário com base na chave primária (pk) fornecida.
+    employee = get_object_or_404(Person, pk=pk)
+
+    # Renderiza o template 'employee_details.html' com o contexto contendo o funcionário.
+    return render(request, 'employee_details.html', { 'employee': employee })
+
+
 
 
 def new_person_view(request):
@@ -38,7 +55,7 @@ def new_address_view(request):
         new_address_form = AddressModelForm(request.POST)
         if new_address_form.is_valid():
             new_address_form.save()
-            return redirect('employee')
+            return redirect('register_contact')
     else:
         new_address_form = AddressModelForm()
     return render(
@@ -53,7 +70,7 @@ def new_contact_view(request):
         new_contact_form = ContactInfoModelForm(request.POST)
         if new_contact_form.is_valid():
             new_contact_form.save()
-            return('')  # colocar um redirect
+            return redirect('register_formofpayment')
     else:
         new_contact_form = ContactInfoModelForm()
     return render(
@@ -68,7 +85,7 @@ def new_formofpay_view(request):
         new_formofpay_form = FormOfPaymentModelForm(request.POST)
         if new_formofpay_form.is_valid():
             new_formofpay_form.save()
-            return('')  # colocar um redirect
+            return redirect('employee')
     else:
         new_formofpay_form = FormOfPaymentModelForm()
     return render(

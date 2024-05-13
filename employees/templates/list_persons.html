@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %} Listar Funcionários {% endblock %}
 
 {% block content %}
 
@@ -6,13 +7,25 @@
     <h3 style="text-align: center;"> <strong> Listagem de Funcionários </strong> </h3>
     <br>
 
-    <table class="table">
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <form class="d-flex" role="search" method="GET" action="{% url 'employee' %}">
+          <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </nav>
+
+    <table class="table table-striped">
+      {% if persons %}
         <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
             <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Detalhes</th>
           </tr>
         </thead>
         <tbody>
@@ -22,10 +35,22 @@
                     <td>{{ person.name }}</td>
                     <td>{{ person.email }}</td>
                     <td>{{ person.cpf }}</td>
+                    <td>{{ person.contactinfo.phone_number }}</td>
+                    <td><a href="{% url 'employee_details' person.id %}"><i class="fi fi-rr-eye"></i> Detalhes</a></td>
                 </tr>
             {% endfor %}
         </tbody>
-      </table>
-
+      {% else %}
+        <tbody>
+          <tr>
+            <td colspan="4" class="text-center">
+              <div class="alert alert-warning" role="alert">
+                Nenhum funcionário encontrado.
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      {% endif %}
+    </table>
 
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} Detalhes do Funcionário {% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="d-flex justify-content-center mt-5">
+      <div class="row">
+        <h3 class="card-details-title">Detalhes do Funcionário:</h3>
+        <div class="col-md-6">
+          <ul class="list-group card-details-list-group">
+            <li class="list-group-item card-details-list-group-item"><strong>Nome:</strong> {{ employee.name }}</li>
+            <li class="list-group-item card-details-list-group-item"><strong>E-mail:</strong> {{ employee.email }}</li>
+            <li class="list-group-item card-details-list-group-item"><strong>CPF:</strong> {{ employee.cpf }}</li>
+            <li class="list-group-item card-details-list-group-item"><strong>Nome da mãe:</strong> {{ employee.name_mother }}</li>
+            {% if employee.contactinfo %}
+              <li class="list-group-item card-details-list-group-item"><strong>Número de telefone:</strong> {{ employee.contactinfo.phone_number }}</li>
+              <li class="list-group-item card-details-list-group-item"><strong>Contato de emergência:</strong> {{ employee.contactinfo.emergency_contact_name }}</li>
+              <li class="list-group-item card-details-list-group-item"><strong>Número de emergência:</strong> {{ employee.contactinfo.emergency_contact_number }}</li>
+            {% endif %}
+            {% if employee.address %}
+              <li class="list-group-item card-details-list-group-item"><strong>Endereço:</strong> {{ employee.address.street }}, {{ employee.address.number }}, {{ employee.address.city }}, {{ employee.address.state }}, CEP: {{ employee.address.postal_code }}</li>
+            {% endif %}
+            {% if employee.formofpayment %}
+              <li class="list-group-item card-details-list-group-item"><strong>PIX:</strong> {{ employee.formofpayment.pix }} </li>
+              <li class="list-group-item card-details-list-group-item"><strong>Tipo de chave PIX:</strong> {{ employee.formofpayment.type_pix }} </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

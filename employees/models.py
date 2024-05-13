@@ -11,7 +11,7 @@ class Sex(models.Model):
 class Person(models.Model):
     name = models.CharField(max_length=200)
     cpf = models.CharField(max_length=15)
-    rg = models.CharField(max_length=15)
+    name_mother = models.CharField(max_length=200)
     birth_date = models.DateField(blank=True, null=True)
     sex = models.ForeignKey(Sex, on_delete=models.PROTECT, related_name='person_sex')
     email = models.EmailField(blank=True, null=True)
