@@ -81,7 +81,6 @@ class ContactInfoModelForm(forms.ModelForm):
         return instance
 
 
-
 # Form Forma de pagamento
 class FormOfPaymentModelForm(forms.ModelForm):
     class Meta:
