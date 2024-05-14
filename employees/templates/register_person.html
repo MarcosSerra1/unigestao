@@ -26,11 +26,50 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h2>Cadastrar Funcionário</h2>
-        <form method="post">
+    <div class="container d-flex justify-content-center d-flex flex-column">
+        <h2 class="m-t fw-bold register_title">Cadastrar Funcionário</h2>
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_cpf" class="form-label">CPF:</label>
+                        {{ new_person_form.cpf }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_name" class="form-label">Nome:</label>
+                        {{ new_person_form.name }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_mother" class="form-label">Nome da mãe:</label>
+                        {{ new_person_form.name_mother }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_birth_date" class="form-label">Data de nascimento:</label>
+                        {{ new_person_form.birth_date }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_email" class="form-label">E-mail:</label>
+                        {{ new_person_form.email }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_sex" class="form-label">Sexo:</label>
+                        {{ new_person_form.sex }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="reset" class="btn-primary">Limpar Campos</button>
+                    </div>
+                </div>
+    </div>
+        </div>
+        </form>
+
+
+        <!-- <form method="post">
             {% csrf_token %}
             <div class="row g-3">
+<<<<<<< HEAD
                 <div class="col-md-12">
                     <label for="id_name" class="form-label">Nome:</label>
                     {{ new_person_form.name }}
@@ -89,12 +128,14 @@
                         <button type="reset" class="btn btn-primary">Limpar Campos</button>
                     </div>
                 </div>
+=======
+>>>>>>> 12792a754b67884fd37200b4d4452c722f1e8667
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                     <button type="reset" class="btn btn-secondary">Limpar Campos</button>
                 </div>
             </div>
-        </form>
+        </form> -->
     </div>
         </div>
         </form>
