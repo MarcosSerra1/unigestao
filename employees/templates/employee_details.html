@@ -3,10 +3,11 @@
 {% block title %} Detalhes do Funcionário {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <div class="d-flex justify-content-center mt-5">
+
+  <div class="container d-flex justify-content-center mt-5">
+    <div class="">
       <div class="row">
-        <h3 class="card-details-title">Detalhes do Funcionário:</h3>
+        <h3 class="card-details-title">Ficha Registro:</h3>
         <div class="col-md-6">
           <ul class="list-group card-details-list-group">
             <li class="list-group-item card-details-list-group-item"><strong>Nome:</strong> {{ employee.name }}</li>
@@ -30,4 +31,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
