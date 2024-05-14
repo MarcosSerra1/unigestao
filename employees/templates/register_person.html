@@ -54,12 +54,49 @@
                 <div class="col-md-12">
                     <label for="id_sex" class="form-label">Sexo:</label>
                     {{ new_person_form.sex }}
+    <div class="container d-flex justify-content-center d-flex flex-column mt-5">
+        <h2 class="fw-bold register_title">Cadastro de Funcionários</h2>
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_cpf" class="form-label">CPF:</label>
+                        {{ new_person_form.cpf }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_name" class="form-label">Nome:</label>
+                        {{ new_person_form.name }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_mother" class="form-label">Nome da mãe:</label>
+                        {{ new_person_form.name_mother }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_birth_date" class="form-label">Data de nascimento:</label>
+                        {{ new_person_form.birth_date }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_email" class="form-label">E-mail:</label>
+                        {{ new_person_form.email }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_sex" class="form-label">Sexo:</label>
+                        {{ new_person_form.sex }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column gap-3">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="reset" class="btn btn-primary">Limpar Campos</button>
+                    </div>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                     <button type="reset" class="btn btn-secondary">Limpar Campos</button>
                 </div>
             </div>
+        </form>
+    </div>
+        </div>
         </form>
     </div>
 {% endblock %}
