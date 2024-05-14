@@ -9,6 +9,9 @@ class PersonModelForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = '__all__'
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
