@@ -2,29 +2,7 @@
 
 {% block content %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fi fi-rr-apps"></i> Dados Adicionais
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'register_address' %}"><i class="fi fi-rr-marker"></i> Endereço </a></li>
-                            <li><a class="dropdown-item" href="{% url 'register_formofpayment' %}"><i class="fi fi-rr-dollar"></i> Chaves PIX </a></li>
-                            <li><a class="dropdown-item" href="{% url 'register_contact' %}"><i class="fi fi-rr-phone-call"></i> Contatos </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'nav.html' %}
 
     <form method="post">
         {% csrf_token %}
