@@ -1,35 +1,16 @@
 {% extends "base.html" %}
+{% block title %} ++ Cadastro de Usuários ++ {% endblock %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fi fi-rr-apps"></i> Dados Adicionais
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'register_address' %}"><i class="fi fi-rr-marker"></i> Endereço </a></li>
-                            <li><a class="dropdown-item" href="{% url 'register_formofpayment' %}"><i class="fi fi-rr-dollar"></i> Chaves PIX </a></li>
-                            <li><a class="dropdown-item" href="{% url 'register_contact' %}"><i class="fi fi-rr-phone-call"></i> Contatos </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container d-flex justify-content-center d-flex flex-column mt-5">
-        <h2 class="fw-bold register_title">Cadastro de Funcionários</h2>
-        <div class="container">
+
+    {% include 'nav.html' %}
+
+    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+        <h2 class="fw-light text-align-center">Cadastro de Funcionários</h2>
+        <div class="container mt-5">
             <form method="post">
                 {% csrf_token %}
-                <div class="row g-3">
+                <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_cpf" class="form-label">CPF:</label>
                         {{ new_person_form.cpf }}
@@ -54,10 +35,10 @@
                         <label for="id_sex" class="form-label">Sexo:</label>
                         {{ new_person_form.sex }}
                     </div>
-                    <div class="col-md-12 d-flex flex-column gap-3">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <button type="reset" class="btn btn-primary">Limpar Campos</button>
-                    </div>
+                </div>
+                <div class="col-md-12 d-flex gap-2 mt-3">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="reset" class="btn btn-success">Limpar Campos</button>
                 </div>
             </div>
         </form>
@@ -66,4 +47,3 @@
         </form>
     </div>
 {% endblock %}
-<!-- lembrete tem campos faltantes  -->
