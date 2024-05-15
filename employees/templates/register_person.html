@@ -10,7 +10,7 @@
             </button>
             <div class="d-flex justify-content-center align-items-center  collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav gap-4">
-                    <li><a class="dropdown-item" href=""><i class="fi fi-rr-user"> Cadastro de Funcionários</i></a></li>
+                    <li><a type="button" link-underline-opacity-75-hover class="dropdown-item" href="#"><i class="fi fi-rr-user"> Cadastro de Funcionários</i></a></li>
                     <li><a class="dropdown-item" href="{% url 'register_address' %}"><i class="fi fi-rr-marker"></i> Endereço </a></li>
                     <li><a class="dropdown-item" href="{% url 'register_formofpayment' %}"><i class="fi fi-rr-dollar"></i> Chaves PIX </a></li>
                     <li><a class="dropdown-item" href="{% url 'register_contact' %}"><i class="fi fi-rr-phone-call"></i> Contatos </a></li>
@@ -20,10 +20,10 @@
     </nav>
     <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
         <h2 class="fw-light text-align-center">Cadastro de Funcionários</h2>
-        <div class="container">
+        <div class="container mt-5">
             <form method="post">
                 {% csrf_token %}
-                <div class="row g-3">
+                <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_cpf" class="form-label">CPF:</label>
                         {{ new_person_form.cpf }}
@@ -48,10 +48,10 @@
                         <label for="id_sex" class="form-label">Sexo:</label>
                         {{ new_person_form.sex }}
                     </div>
-                    <div class="col-md-12 d-flex gap-3">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <button type="reset" class="btn btn-success">Limpar Campos</button>
-                    </div>
+                </div>
+                <div class="col-md-12 d-flex gap-2 mt-3">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="reset" class="btn btn-success">Limpar Campos</button>
                 </div>
             </div>
         </form>
