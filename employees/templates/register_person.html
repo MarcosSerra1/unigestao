@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -25,9 +24,8 @@
             </div>
         </div>
     </nav>
-
-    <div class="container d-flex justify-content-center d-flex flex-column">
-        <h2 class="m-t fw-bold register_title">Cadastrar Funcionário</h2>
+    <div class="container d-flex justify-content-center d-flex flex-column mt-5">
+        <h2 class="fw-bold register_title">Cadastro de Funcionários</h2>
         <div class="container">
             <form method="post">
                 {% csrf_token %}
@@ -56,27 +54,16 @@
                         <label for="id_sex" class="form-label">Sexo:</label>
                         {{ new_person_form.sex }}
                     </div>
-                    <div class="col-md-12 d-flex flex-column">
+                    <div class="col-md-12 d-flex flex-column gap-3">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <button type="reset" class="btn-primary">Limpar Campos</button>
+                        <button type="reset" class="btn btn-primary">Limpar Campos</button>
                     </div>
                 </div>
+            </div>
+        </form>
     </div>
         </div>
         </form>
-
-
-        <!-- <form method="post">
-            {% csrf_token %}
-            <div class="row g-3">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    <button type="reset" class="btn btn-secondary">Limpar Campos</button>
-                </div>
-            </div>
-        </form> -->
     </div>
 {% endblock %}
-
-
 <!-- lembrete tem campos faltantes  -->
