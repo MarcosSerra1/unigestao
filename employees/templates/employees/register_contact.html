@@ -1,5 +1,5 @@
 {% extends "global/base.html" %}
-
+{% load widget_tweaks %}
 {% block content %}
 
     {% include 'employees/partials/nav.html' %}
@@ -11,24 +11,24 @@
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_employee" class="form-label">Funcionário:</label>
-                        {{ new_contact_form.employee }}
+                        {{ new_contact_form.employee|add_class:"form-select" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_phone_number" class="form-label">Celular:</label>
-                        {{ new_contact_form.phone_number }}
+                        {{ new_contact_form.phone_number|add_class:"form-control" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_emergency_contact_name" class="form-label">Nome para emergencia:</label>
-                        {{ new_contact_form.emergency_contact_name }}
+                        {{ new_contact_form.emergency_contact_name|add_class:"form-control" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_emergency_contact_number" class="form-label">Contato para emergencia:</label>
-                        {{ new_contact_form.emergency_contact_number }}
+                        {{ new_contact_form.emergency_contact_number|add_class:"form-control" }}
                     </div>
                 </div>
                 <div class="col-md-12 d-flex gap-2 mt-3">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    <button type="reset" class="btn btn-success">Limpar Campos</button>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="reset" class="btn btn-primary">Limpar Campos</button>
                 </div>
             </div>
         </form>
