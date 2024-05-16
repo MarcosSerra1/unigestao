@@ -3,17 +3,37 @@
 {% block content %}
 
     {% include 'employees/partials/nav.html' %}
-    <form method="post">
-        {% csrf_token %}
-        <h2>Cadastrar Contatos</h2>
-        <table>
-
-            {{ new_contact_form.as_table }}
-
-        </table>
-        <br>
-        <input type="submit" value="Cadastrar" class="btn btn-primary">
-        <input type="reset" value="Limpar Campos" class="btn btn-secondary">
-    </form>
-
+    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+        <h2 class="fw-light text-align-center">Contato</h2>
+        <div class="container mt-5">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row row-cols-2 row-cols-lg-2">
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_employee" class="form-label">Funcionário:</label>
+                        {{ new_contact_form.employee }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_phone_number" class="form-label">Celular:</label>
+                        {{ new_contact_form.phone_number }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_emergency_contact_name" class="form-label">Nome para emergencia:</label>
+                        {{ new_contact_form.emergency_contact_name }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_emergency_contact_number" class="form-label">Contato para emergencia:</label>
+                        {{ new_contact_form.emergency_contact_number }}
+                    </div>
+                </div>
+                <div class="col-md-12 d-flex gap-2 mt-3">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="reset" class="btn btn-success">Limpar Campos</button>
+                </div>
+            </div>
+        </form>
+    </div>
+        </div>
+        </form>
+    </div>
 {% endblock %}
