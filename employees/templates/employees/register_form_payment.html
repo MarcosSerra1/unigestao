@@ -1,5 +1,5 @@
 {% extends "global/base.html" %}
-
+{% load widget_tweaks %}
 {% block content %}
 
     {% include 'employees/partials/nav.html' %}
@@ -12,23 +12,23 @@
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_employee" class="form-label">Funcionário:</label>
-                        {{ new_formofpay_form.employee }}
+                        {{ new_formofpay_form.employee|add_class:"form-select" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_pix" class="form-label">Pix:</label>
-                        {{ new_formofpay_form.pix }}
+                        {{ new_formofpay_form.pix|add_class:"form-select" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_bank" class="form-label">Banco:</label>
-                        {{ new_formofpay_form.bank }}
+                        {{ new_formofpay_form.bank|add_class:"form-select" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_typePix" class="form-label">Tipo de chave:</label>
-                        {{ new_formofpay_form.type_pix }}
+                        {{ new_formofpay_form.type_pix|add_class:"form-select" }}
                     </div>
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_recipient_name" class="form-label">Titular:</label>
-                        {{ new_formofpay_form.recipient_name }}
+                        {{ new_formofpay_form.recipient_name|add_class:"form-select" }}
                     </div>
                 </div>
                 <div class="col-md-12 d-flex gap-2 mt-3">
