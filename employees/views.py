@@ -5,7 +5,7 @@ from employees.models import Person
 def home_view(request):
     return render(
         request=request,
-        template_name='home.html'
+        template_name='employees/home.html'
     )
 
 
@@ -18,7 +18,7 @@ def list_persons_view(request):
 
     return render(
         request=request,
-        template_name='list_persons.html',
+        template_name='employees/list_persons.html',
         context={ 'persons': persons })
 
 
@@ -29,7 +29,7 @@ def employee_detail_view(request, pk):
     employee = get_object_or_404(Person, pk=pk)
 
     # Renderiza o template 'employee_details.html' com o contexto contendo o funcionário.
-    return render(request, 'employee_details.html', { 'employee': employee })
+    return render(request, 'employees/employee_details.html', { 'employee': employee })
 
 
 
@@ -39,13 +39,13 @@ def new_person_view(request):
         new_person_form = PersonModelForm(request.POST)
         if new_person_form.is_valid():
             new_person_form.save()
-            return redirect('address/')
+            return redirect('register_address')
     else:
         new_person_form = PersonModelForm()
 
     return render(
         request=request,
-        template_name='register_person.html',
+        template_name='employees/register_person.html',
         context={ 'new_person_form': new_person_form }
     )
 
@@ -60,7 +60,7 @@ def new_address_view(request):
         new_address_form = AddressModelForm()
     return render(
         request=request,
-        template_name='register_address.html',
+        template_name='employees/register_address.html',
         context={ 'new_address_form': new_address_form}
     )
 
@@ -75,7 +75,7 @@ def new_contact_view(request):
         new_contact_form = ContactInfoModelForm()
     return render(
         request=request,
-        template_name='register_contact.html',
+        template_name='employees/register_contact.html',
         context={ 'new_contact_form':new_contact_form }
     )
 
@@ -90,6 +90,6 @@ def new_formofpay_view(request):
         new_formofpay_form = FormOfPaymentModelForm()
     return render(
         request=request,
-        template_name='register_form_payment.html',
+        template_name='employees/register_form_payment.html',
         context={ 'new_formofpay_form':new_formofpay_form }
     )
