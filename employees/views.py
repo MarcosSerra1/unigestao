@@ -39,7 +39,7 @@ def new_person_view(request):
         new_person_form = PersonModelForm(request.POST)
         if new_person_form.is_valid():
             new_person_form.save()
-            return redirect('address/')
+            return redirect('register_address')
     else:
         new_person_form = PersonModelForm()
 
@@ -70,7 +70,7 @@ def new_contact_view(request):
         new_contact_form = ContactInfoModelForm(request.POST)
         if new_contact_form.is_valid():
             new_contact_form.save()
-            return redirect('employees/register_formofpayment')
+            return redirect('register_formofpayment')
     else:
         new_contact_form = ContactInfoModelForm()
     return render(
