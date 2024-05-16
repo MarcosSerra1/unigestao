@@ -37,10 +37,7 @@
                         <label for="id_city" class="form-label">Cidade</label>
                         {{ new_address_form.city|add_class:"form-control" }}
                     </div>
-                    <div class="col-md-12 d-flex gap-2 mt-3">
-                        <input type="submit" value="Cadastrar" class="btn btn-success">
-                        <input type="reset" value="Limpar Campos" class="btn btn-primary">
-                    </div>
+                    {% include 'employees/partials/button.html'%}
                 </div>
             </form>
         </div>

@@ -3,7 +3,6 @@
 {% block content %}
 
     {% include 'employees/partials/nav.html' %}
-
     <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
         <h2 class="fw-light text-align-center">Forma de pagamento</h2>
         <div class="container mt-5">
@@ -31,10 +30,7 @@
                         {{ new_formofpay_form.recipient_name|add_class:"form-control" }}
                     </div>
                 </div>
-                <div class="col-md-12 d-flex gap-2 mt-3">
-                    <input type="submit" value="Cadastrar" class="btn btn-primary">
-                    <input type="reset" value="Limpar Campos" class="btn btn-secondary">
-                </div>
+                {% include 'employees/partials/button.html'%}
             </form>
         </div>
     </div>

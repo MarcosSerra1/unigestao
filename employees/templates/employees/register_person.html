@@ -38,10 +38,7 @@
                         {{ new_person_form.sex|add_class:"form-select" }}
                     </div>
                 </div>
-                <div class="col-md-12 d-flex gap-2 mt-3">
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
-                    <button type="reset" class="btn btn-primary">Limpar Campos</button>
-                </div>
+                {% include 'employees/partials/button.html'%}
             </div>
         </form>
     </div>

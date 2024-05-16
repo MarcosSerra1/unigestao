@@ -26,10 +26,7 @@
                         {{ new_contact_form.emergency_contact_number|add_class:"form-control" }}
                     </div>
                 </div>
-                <div class="col-md-12 d-flex gap-2 mt-3">
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
-                    <button type="reset" class="btn btn-primary">Limpar Campos</button>
-                </div>
+                {% include 'employees/partials/button.html'%}
             </div>
         </form>
     </div>
