@@ -1,13 +1,20 @@
-# Uni Gestão
+<h1 align="center"> Uni Gestão </h1>
 
-Uni Gestão é uma aplicação web desenvolvida em Django para gerenciamento de funcionários. Permite registrar, visualizar, editar e excluir informações de funcionários, como nome, e-mail, CPF, dados de contato, endereço e detalhes de pagamento.
+<p align="center"> :construction: Projeto em construção :construction: </p>
 
-## Funcionalidades
+Uni Gestão é uma aplicação web que está sendo desenvolvida em Django para gerenciamento de funcionários. Permite registrar, visualizar, editar e excluir informações de funcionários, como nome, e-mail, CPF, dados de contato, endereço e detalhes de pagamento.
 
-- Registro de novos funcionários com informações detalhadas.
-- Visualização de todos os funcionários cadastrados.
-- Edição e exclusão de informações de funcionários existentes.
-- Gestão de dados de contato, endereço e pagamento de funcionários.
+## :hammer: Funcionalidades do projeto
+
+- `Cadastro de funcionários`: Registro de novos funcionários com informações detalhadas.
+    - Endereço;
+    - Pix;
+    - Contato.
+- `Tela de visualização`: Visualização de todos os funcionários cadastrados.
+- `Tela de edição`:
+    - Edição;
+    - Exclusão de informações de funcionários existentes;
+    - Exclusão de funcionários.
 
 ## Instalação
 
@@ -54,13 +61,11 @@ Uni Gestão é uma aplicação web desenvolvida em Django para gerenciamento de 
 
 9. Acesse a aplicação em seu navegador em http://localhost:8000.
 
-## Contribuindo
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas ou enviar solicitações de recebimento.
+## Autores
 
-## Autor
-
-Marcos Serra
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/78652932?v=4" width=115><br><sub>Marcos Serra</sub>](https://github.com/MarcosSerra1) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/167050569?v=4" width=115><br><sub>Levi Maycom</sub>](https://github.com/guilhermeonrails) |
+| :---: | :---: |
 
 ## Licença
 
