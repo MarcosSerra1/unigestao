@@ -6,7 +6,7 @@ urlpatterns = [
     path('employee', list_persons_view, name='employee'),  # listagem de funcionários
     path('employee/<int:pk>/', employee_detail_view, name='employee_details'),  # caminho para abrir detalhes sobre o funcionario 
     path('register/', new_person_view, name='register_person'),  # registrar funcionário
-    path('register/address/', new_address_view, name='register_address'),  # registrar endereço
-    path('register/contact/', new_contact_view, name='register_contact'),  # registrar contato
-    path('register/form_of_pay/', new_formofpay_view, name='register_formofpayment'), # registrar forma de pagemnto
+    path('address/', new_address_view, name='register_address'),  # registrar endereço
+    path('contact/', new_contact_view, name='register_contact'),  # registrar contato
+    path('form_of_pay/', new_formofpay_view, name='register_formofpayment'), # registrar forma de pagemnto
 ]
