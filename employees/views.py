@@ -55,21 +55,6 @@ class AddressCreateView(CreateView):
         return context
 
 
-def new_address_view(request):
-    if request.method == 'POST':
-        new_address_form = AddressModelForm(request.POST)
-        if new_address_form.is_valid():
-            new_address_form.save()
-            return redirect('register_contact')
-    else:
-        new_address_form = AddressModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_address.html',
-        context={ 'new_address_form': new_address_form}
-    )
-
-
 def new_contact_view(request):
     if request.method == 'POST':
         new_contact_form = ContactInfoModelForm(request.POST)
