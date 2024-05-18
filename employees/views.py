@@ -12,13 +12,6 @@ class HomeView(View):
         )
 
 
-def home_view(request):
-    return render(
-        request=request,
-        template_name='employees/home.html'
-    )
-
-
 def list_persons_view(request):
     persons = Person.objects.all().order_by('id')
     search = request.GET.get('search')
