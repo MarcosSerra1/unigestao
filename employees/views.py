@@ -1,5 +1,5 @@
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
@@ -26,8 +26,11 @@ class EmployeesListView(ListView):
         return person
 
 
-# Define uma def de visualização para exibir os detalhes de um funcionário.
-# Esta classe herda da classe DetailView do Django, que é uma visualização genérica para exibir os detalhes de um único objeto.
+class EmployeesDetailView(DetailView):
+    model = Person
+    template_name = 'employees/employee_details.html'
+
+
 def employee_detail_view(request, pk):
     # Recupera o funcionário com base na chave primária (pk) fornecida.
     employee = get_object_or_404(Person, pk=pk)
