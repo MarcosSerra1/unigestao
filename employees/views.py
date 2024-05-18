@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.views import View
 from django.views.generic import ListView
 
@@ -21,6 +23,12 @@ class EmployeesListView(ListView):
     template_name = 'employees/list_persons.html'
     context_object_name = 'persons'
 
+    def get_queryset(self):
+        person = super().get_queryset().order_by('name')
+        search = self.request.GET.get('search')
+        if search:
+            person = Person.objects.filter(name__icontains=search)
+        return person
 
 def list_persons_view(request):
     persons = Person.objects.all().order_by('id')
