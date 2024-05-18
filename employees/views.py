@@ -1,6 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
+
+
+class HomeView(View):
+    def get(self, request):
+        return render(
+            request=request,
+            template_name='employees/home.html'
+        )
+
 
 def home_view(request):
     return render(
