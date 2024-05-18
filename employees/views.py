@@ -1,9 +1,5 @@
-from typing import Any
-from django.db.models.query import QuerySet
 from django.views import View
 from django.views.generic import ListView
-
-
 from django.shortcuts import render, redirect, get_object_or_404
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
@@ -17,7 +13,6 @@ class HomeView(View):
         )
 
 
-
 class EmployeesListView(ListView):
     model = Person
     template_name = 'employees/list_persons.html'
@@ -29,18 +24,6 @@ class EmployeesListView(ListView):
         if search:
             person = Person.objects.filter(name__icontains=search)
         return person
-
-def list_persons_view(request):
-    persons = Person.objects.all().order_by('id')
-    search = request.GET.get('search')
-
-    if search:
-        persons = Person.objects.filter(name__icontains=search)
-
-    return render(
-        request=request,
-        template_name='employees/list_persons.html',
-        context={ 'persons': persons })
 
 
 # Define uma def de visualização para exibir os detalhes de um funcionário.
