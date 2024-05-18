@@ -1,6 +1,6 @@
 from django.views import View
-from django.views.generic import ListView, DetailView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView
+from django.shortcuts import render, redirect
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
 
@@ -29,6 +29,19 @@ class EmployeesListView(ListView):
 class EmployeesDetailView(DetailView):
     model = Person
     template_name = 'employees/employee_details.html'
+
+
+class EmployeeCreateView(CreateView):
+    model = Person
+    form_class = PersonModelForm
+    template_name = 'employees/register_person.html'
+    success_url = '/address/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['new_person_form'] = context['form']
+        return context
+
 
 
 def new_person_view(request):
