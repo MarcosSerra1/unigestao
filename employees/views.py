@@ -31,16 +31,6 @@ class EmployeesDetailView(DetailView):
     template_name = 'employees/employee_details.html'
 
 
-def employee_detail_view(request, pk):
-    # Recupera o funcionário com base na chave primária (pk) fornecida.
-    employee = get_object_or_404(Person, pk=pk)
-
-    # Renderiza o template 'employee_details.html' com o contexto contendo o funcionário.
-    return render(request, 'employees/employee_details.html', { 'employee': employee })
-
-
-
-
 def new_person_view(request):
     if request.method == 'POST':
         new_person_form = PersonModelForm(request.POST)
