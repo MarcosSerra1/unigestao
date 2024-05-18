@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.views.generic import ListView
+
+
+from django.shortcuts import render, redirect, get_object_or_404
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
 
@@ -10,6 +13,13 @@ class HomeView(View):
             request=request,
             template_name='employees/home.html'
         )
+
+
+
+class EmployeesListView(ListView):
+    model = Person
+    template_name = 'employees/list_persons.html'
+    context_object_name = 'persons'
 
 
 def list_persons_view(request):
