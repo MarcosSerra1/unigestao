@@ -2,7 +2,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, redirect
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person
+from employees.models import Person, Address
 
 
 class HomeView(View):
@@ -35,11 +35,23 @@ class EmployeeCreateView(CreateView):
     model = Person
     form_class = PersonModelForm
     template_name = 'employees/register_person.html'
-    success_url = '/address/'
+    success_url = '/register/address/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['new_person_form'] = context['form']
+        return context
+
+
+class AddressCreateView(CreateView):
+    model = Address
+    form_class = AddressModelForm
+    template_name = 'employees/register_address.html'
+    success_url = '/register/contact/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['new_address_form'] = context['form']
         return context
 
 
