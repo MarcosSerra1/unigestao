@@ -43,23 +43,6 @@ class EmployeeCreateView(CreateView):
         return context
 
 
-
-def new_person_view(request):
-    if request.method == 'POST':
-        new_person_form = PersonModelForm(request.POST)
-        if new_person_form.is_valid():
-            new_person_form.save()
-            return redirect('register_address')
-    else:
-        new_person_form = PersonModelForm()
-
-    return render(
-        request=request,
-        template_name='employees/register_person.html',
-        context={ 'new_person_form': new_person_form }
-    )
-
-
 def new_address_view(request):
     if request.method == 'POST':
         new_address_form = AddressModelForm(request.POST)
