@@ -1,6 +1,6 @@
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
 
