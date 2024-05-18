@@ -2,7 +2,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, redirect
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person, Address
+from employees.models import Person
 
 
 class HomeView(View):
@@ -44,7 +44,7 @@ class EmployeeCreateView(CreateView):
 
 
 class AddressCreateView(CreateView):
-    model = Address
+    model = Person
     form_class = AddressModelForm
     template_name = 'employees/register_address.html'
     success_url = '/register/contact/'
@@ -55,31 +55,25 @@ class AddressCreateView(CreateView):
         return context
 
 
-def new_contact_view(request):
-    if request.method == 'POST':
-        new_contact_form = ContactInfoModelForm(request.POST)
-        if new_contact_form.is_valid():
-            new_contact_form.save()
-            return redirect('register_formofpayment')
-    else:
-        new_contact_form = ContactInfoModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_contact.html',
-        context={ 'new_contact_form':new_contact_form }
-    )
+class ContactCreateView(CreateView):
+    model = Person
+    form_class = ContactInfoModelForm
+    template_name = 'employees/register_contact.html'
+    success_url = '/register/form_of_pay/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['new_contact_form'] = context['form']
+        return context
 
 
-def new_formofpay_view(request):
-    if request.method == 'POST':
-        new_formofpay_form = FormOfPaymentModelForm(request.POST)
-        if new_formofpay_form.is_valid():
-            new_formofpay_form.save()
-            return redirect('employee')
-    else:
-        new_formofpay_form = FormOfPaymentModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_form_payment.html',
-        context={ 'new_formofpay_form':new_formofpay_form }
-    )
+class PayCreateView(CreateView):
+    model = Person
+    form_class = FormOfPaymentModelForm
+    template_name = 'employees/register_form_payment.html'
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['new_formofpay_form'] = context['form']
+        return context
