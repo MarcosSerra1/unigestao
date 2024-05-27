@@ -1,5 +1,5 @@
 from django.urls import path
-from employees.views import HomeView, EmployeesListView, EmployeesDetailView, EmployeeCreateView, AddressCreateView, ContactCreateView, PayCreateView
+from employees.views import HomeView, EmployeesListView, EmployeesDetailView, EmployeeCreateView, AddressCreateView, ContactCreateView, PayCreateView, create_employee
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('register/address/', AddressCreateView.as_view(), name='register_address'),  # registrar endereço
     path('register/contact/', ContactCreateView.as_view(), name='register_contact'),  # registrar contato
     path('register/form_of_pay/', PayCreateView.as_view(), name='register_formofpayment'), # registrar forma de pagemnto
+    path('create-employee/', create_employee, name='create_employee'),
 ]

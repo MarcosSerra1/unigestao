@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+</head>
+<body>
+    <h1>Create Employee</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ person_form.as_p }}
+        {{ contact_info_form.as_p }}
+        {{ address_form.as_p }}
+        {{ form_of_payment_form.as_p }}
+        <button type="submit">Create Employee</button>
+    </form>
+</body>
+</html>

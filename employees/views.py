@@ -3,6 +3,8 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person
+from django.db import transaction
+from django.shortcuts import render, redirect
 
 
 class HomeView(View):
@@ -77,3 +79,41 @@ class PayCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['new_formofpay_form'] = context['form']
         return context
+
+
+def create_employee(request):
+    if request.method == 'POST':
+        person_form = PersonModelForm(request.POST)
+        contact_info_form = ContactInfoModelForm(request.POST)
+        address_form = AddressModelForm(request.POST)
+        form_of_payment_form = FormOfPaymentModelForm(request.POST)
+
+        if (person_form.is_valid() and contact_info_form.is_valid() and
+            address_form.is_valid() and form_of_payment_form.is_valid()):
+            with transaction.atomic():
+                person = person_form.save()
+                contact_info = contact_info_form.save(commit=False)
+                contact_info.employee = person
+                contact_info.save()
+                
+                address = address_form.save(commit=False)
+                address.employee = person
+                address.save()
+                
+                form_of_payment = form_of_payment_form.save(commit=False)
+                form_of_payment.employee = person
+                form_of_payment.save()
+                
+            return redirect('success_url')  # Redirecione para uma página de sucesso
+    else:
+        person_form = PersonModelForm()
+        contact_info_form = ContactInfoModelForm()
+        address_form = AddressModelForm()
+        form_of_payment_form = FormOfPaymentModelForm()
+
+    return render(request, 'employees/create_employee.html', {
+        'person_form': person_form,
+        'contact_info_form': contact_info_form,
+        'address_form': address_form,
+        'form_of_payment_form': form_of_payment_form
+    })
