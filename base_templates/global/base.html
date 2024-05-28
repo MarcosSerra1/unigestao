@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Funcionários</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'register_person' %}"><i class="fi fi-rr-user-add"></i> Cadastrar</a></li>
+                                <li><a class="dropdown-item" href="{% url 'register_employee' %}"><i class="fi fi-rr-user-add"></i> Cadastrar Funcionário </a></li>
                                 <li><a class="dropdown-item" href="{% url 'employee' %}"><i class="fi fi-rr-search"></i> Consultar</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fi fi-rr-pencil"></i> Editar</a></li>
                             </ul>
@@ -48,10 +48,6 @@
                             <a class="nav-link disabled" aria-disabled="true">Financeiro</a>
                         </li>
                     </ul>
-                    <!-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
                 </div>
             </div>
         </nav>
