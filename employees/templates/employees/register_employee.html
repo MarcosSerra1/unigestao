@@ -1,0 +1,112 @@
+{% extends "global/base.html" %}
+{% load widget_tweaks %}
+{% block title %} Cadastrar Funcionarios {% endblock %}
+
+{% block content %}
+
+    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+        <h2 class="fw-light text-align-center">Cadastro de Funcionários</h2>
+        <div class="container mt-5">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row  row-cols-lg-12">
+                    <div class="form-group col-md-2 d-flex flex-column">
+                        <label for="id_cpf" class="form-label">CPF:</label>
+                        {{ person_form.cpf|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-5 d-flex flex-column">
+                        <label for="id_name" class="form-label">Nome:</label>
+                        {{ person_form.name|add_class:"form-control" }}
+                    </div>
+    
+                    <div class="col-md-5 d-flex flex-column">
+                        <label for="id_mother" class="form-label">Nome da mãe:</label>
+                        {{ person_form.name_mother|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <label for="id_email" class="form-label">E-mail:</label>
+                        {{ person_form.email|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-3 d-flex flex-column">
+                        <label for="id_birth_date" class="form-label">Data de nascimento:</label>
+                        {{ person_form.birth_date|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-2 d-flex flex-column">
+                        <label for="id_sex" class="form-label">Sexo:</label>
+                        {{ person_form.sex|add_class:"form-select" }}
+                    </div>
+
+                    <h2 class="fw-light text-align-center">Contato</h2>
+
+                    <div class="row row-cols-2 row-cols-lg-2">
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_phone_number" class="form-label">Celular:</label>
+                            {{ contact_info_form.phone_number|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_emergency_contact_name" class="form-label">Nome para emergencia:</label>
+                            {{ contact_info_form.emergency_contact_name|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_emergency_contact_number" class="form-label">Contato para emergencia:</label>
+                            {{ contact_info_form.emergency_contact_number|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <h2 class="fw-light text-align-center">Endereço</h2>
+
+                    <div class="row row-cols-2 row-cols-lg-2">
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="" class="form-label">CEP</label>
+                            {{ address_form.postal_code|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_street" class="form-label">Endereço</label>
+                            {{ address_form.street|add_class:"form-control" }}
+                        </div>
+                        
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_numero" class="form-label">Número</label>
+                            {{ address_form.number|add_class:"form-control"}}
+                        </div>
+                        
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_state" class="form-label">Estado</label>
+                            {{ address_form.state|add_class:"form-control" }}
+                        </div>
+                        
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_city" class="form-label">Cidade</label>
+                            {{ address_form.city|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <h2 class="fw-light text-align-center">Forma de pagamento</h2>
+
+                    <div class="row row-cols-2 row-cols-lg-2">
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_pix" class="form-label">Pix:</label>
+                            {{ form_of_payment_form.pix|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_bank" class="form-label">Banco:</label>
+                            {{ form_of_payment_form.bank|add_class:"form-select" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_typePix" class="form-label">Tipo de chave:</label>
+                            {{ form_of_payment_form.type_pix|add_class:"form-select" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="id_recipient_name" class="form-label">Titular:</label>
+                            {{ form_of_payment_form.recipient_name|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+
+                </div>
+                {% include 'employees/partials/button.html'%}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
