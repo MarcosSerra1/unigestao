@@ -3,54 +3,54 @@
 
 {% block content %}
 
-    <br>
-    <h3 style="text-align: center;"> <strong> Listagem de Funcionários </strong> </h3>
-    <br>
+  <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+    <h2 class="fw-light text-align-center">Listagem de Funcionários</h2>
+  </div>
 
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <form class="d-flex" role="search" method="GET" action="{% url 'employee' %}">
-          <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
-      </div>
-    </nav>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <form class="d-flex" role="search" method="GET" action="{% url 'employee' %}">
+        <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </nav>
 
-    <table class="table table-striped">
-      {% if persons %}
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Detalhes</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for person in persons %}
-                <tr>
-                    <th scope="row">{{ person.id }}</th>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.email }}</td>
-                    <td>{{ person.cpf }}</td>
-                    <td>{{ person.contactinfo.phone_number }}</td>
-                    <td><a href="{% url 'employee_details' person.id %}"><i class="fi fi-rr-eye"></i> Detalhes</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-      {% else %}
-        <tbody>
-          <tr>
-            <td colspan="4" class="text-center">
-              <div class="alert alert-warning" role="alert">
-                Nenhum funcionário encontrado.
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      {% endif %}
-    </table>
+  <table class="table table-striped">
+    {% if persons %}
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for person in persons %}
+              <tr>
+                  <th scope="row">{{ person.id }}</th>
+                  <td>{{ person.name }}</td>
+                  <td>{{ person.email }}</td>
+                  <td>{{ person.cpf }}</td>
+                  <td>{{ person.contactinfo.phone_number }}</td>
+                  <td><a href="{% url 'employee_details' person.id %}"><i class="fi fi-rr-eye"></i> Detalhes</a></td>
+              </tr>
+          {% endfor %}
+      </tbody>
+    {% else %}
+      <tbody>
+        <tr>
+          <td colspan="4" class="text-center">
+            <div class="alert alert-warning" role="alert">
+              Nenhum funcionário encontrado.
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    {% endif %}
+  </table>
 
 {% endblock %}

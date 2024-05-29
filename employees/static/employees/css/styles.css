@@ -1,0 +1,4 @@
+a{
+    text-decoration: none; /* Remove o sublinhado padrão */
+    color: inherit; /* Herda a cor do texto do elemento pai */
+}

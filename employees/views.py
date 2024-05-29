@@ -1,11 +1,10 @@
-from django.views import View
-from django.views.generic import ListView, DetailView
-from django.shortcuts import render
-from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person
-from django.db import transaction
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views import View
+from django.db import transaction
+from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from employees.models import Person, ContactInfo, Address, FormOfPayment
 
 
 class HomeView(View):
@@ -14,24 +13,6 @@ class HomeView(View):
             request=request,
             template_name='employees/home.html'
         )
-
-
-class EmployeesListView(ListView):
-    model = Person
-    template_name = 'employees/list_persons.html'
-    context_object_name = 'persons'
-
-    def get_queryset(self):
-        person = super().get_queryset().order_by('name')
-        search = self.request.GET.get('search')
-        if search:
-            person = Person.objects.filter(name__icontains=search)
-        return person
-
-
-class EmployeesDetailView(DetailView):
-    model = Person
-    template_name = 'employees/employee_details.html'
 
 
 class CreateEmployeeView(View):
@@ -80,3 +61,83 @@ class CreateEmployeeView(View):
             'address_form': address_form,
             'form_of_payment_form': form_of_payment_form
         })
+
+
+class EmployeesListView(ListView):
+    model = Person
+    template_name = 'employees/list_persons.html'
+    context_object_name = 'persons'
+
+    def get_queryset(self):
+        person = super().get_queryset().order_by('name')
+        search = self.request.GET.get('search')
+        if search:
+            person = Person.objects.filter(name__icontains=search)
+        return person
+
+
+class EmployeesDetailView(DetailView):
+    model = Person
+    template_name = 'employees/employee_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o contato do funcionário ao contexto
+        context['contact_info'] = ContactInfo.objects.get(employee=self.object)
+        # Adiciona o endereço do funcionário ao contexto
+        context['address'] = Address.objects.get(employee=self.object)
+        # Adiciona a forma de pagamento do funcionário ao contexto
+        context['form_of_payment'] = FormOfPayment.objects.get(employee=self.object)
+        return context
+
+
+class UpdateEmployeeView(UpdateView):
+    template_name = 'employees/update_employee.html'
+    model = Person
+    form_class = PersonModelForm
+    success_url = '/employee/'
+
+
+class UpdateContactView(UpdateView):
+    template_name = 'employees/update_contact.html'
+    model = ContactInfo
+    form_class = ContactInfoModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class UpdateAddressView(UpdateView):
+    template_name = 'employees/update_address.html'
+    model = Address
+    form_class = AddressModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class UpdateFormOfPayView(UpdateView):
+    template_name = 'employees/update_form_of_payment.html'
+    model = FormOfPayment
+    form_class = FormOfPaymentModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class DeleteEmployeeView(DeleteView):
+    model = Person
+    template_name = 'employees/delete_employee.html'
+    success_url = '/employee/'

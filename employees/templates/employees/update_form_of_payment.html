@@ -1,0 +1,33 @@
+{% extends "global/base.html" %}
+{% load widget_tweaks %}
+{% block title %} Atualizar Forma de pagamento {% endblock %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+        <h2 class="fw-light text-align-center">Atualizar PIX</h2>
+        <div class="container mt-5">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row row-cols-2 row-cols-lg-2">
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_pix" class="form-label">Pix:</label>
+                        {{ form.pix|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_bank" class="form-label">Banco:</label>
+                        {{ form.bank|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_typePix" class="form-label">Tipo de chave:</label>
+                        {{ form.type_pix|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_recipient_name" class="form-label">Titular:</label>
+                        {{ form.recipient_name|add_class:"form-control" }}
+                    </div>
+                </div>
+                {% include 'employees/partials/button_update.html' %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
