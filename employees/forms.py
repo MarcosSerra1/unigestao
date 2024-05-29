@@ -9,9 +9,6 @@ class PersonModelForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = '__all__'
-        widgets = {
-            'birth_date': forms.DateInput(attrs={'type': 'date'})
-        }
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
@@ -21,15 +18,11 @@ class PersonModelForm(forms.ModelForm):
     def clean_cpf(self):
         cpf = self.cleaned_data.get('cpf')
 
-        # Valida o formato do CPF
+        # Valida o formato do CPF e o CPF
         cpf = validar_cpf(cpf)
 
         if cpf is False:
             raise forms.ValidationError('CPF inválido')
-
-        # Verifica se o CPF já existe no banco de dados
-        if Person.objects.filter(cpf=cpf).exists():
-            raise forms.ValidationError('Este CPF já está cadastrado')
 
         return cpf
     
