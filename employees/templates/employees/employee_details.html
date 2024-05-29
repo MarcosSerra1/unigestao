@@ -1,35 +1,76 @@
 {% extends "global/base.html" %}
-
+{% load widget_tweaks %}
 {% block title %} Detalhes do Funcionário {% endblock %}
 
 {% block content %}
+  <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+    <h2 class="fw-light text-align-center"><strong>Ficha Registro</strong></h2>
+    <div class="container mt-5">
 
-  <div class="container d-flex justify-content-center mt-5">
-    <div class="">
-      <div class="row">
-        <h3 class="card-details-title">Ficha Registro:</h3>
-        <div class="col-md-6">
-          <ul class="list-group card-details-list-group">
-            <li class="list-group-item card-details-list-group-item"><strong>Nome:</strong> {{ employee.name }}</li>
-            <li class="list-group-item card-details-list-group-item"><strong>E-mail:</strong> {{ employee.email }}</li>
-            <li class="list-group-item card-details-list-group-item"><strong>CPF:</strong> {{ employee.cpf }}</li>
-            <li class="list-group-item card-details-list-group-item"><strong>Nome da mãe:</strong> {{ employee.name_mother }}</li>
-            {% if employee.contactinfo %}
-              <li class="list-group-item card-details-list-group-item"><strong>Número de telefone:</strong> {{ employee.contactinfo.phone_number }}</li>
-              <li class="list-group-item card-details-list-group-item"><strong>Contato de emergência:</strong> {{ employee.contactinfo.emergency_contact_name }}</li>
-              <li class="list-group-item card-details-list-group-item"><strong>Número de emergência:</strong> {{ employee.contactinfo.emergency_contact_number }}</li>
-            {% endif %}
-            {% if employee.address %}
-              <li class="list-group-item card-details-list-group-item"><strong>Endereço:</strong> {{ employee.address.street }}, {{ employee.address.number }}, {{ employee.address.city }}, {{ employee.address.state }}, CEP: {{ employee.address.postal_code }}</li>
-            {% endif %}
-            {% if employee.formofpayment %}
-              <li class="list-group-item card-details-list-group-item"><strong>PIX:</strong> {{ employee.formofpayment.pix }} </li>
-              <li class="list-group-item card-details-list-group-item"><strong>Tipo de chave PIX:</strong> {{ employee.formofpayment.type_pix }} </li>
-            {% endif %}
-          </ul>
+      <h2 class="fw-light"><a href="{% url 'update_employee' pk=object.pk %}">Informações pessoais</a></h2>
+      <div class="row row-cols-lg-12">
+        <div class="form-group col-md-2 d-flex flex-column">
+            <label for="id_cpf" class="form-label"><strong>CPF:</strong> {{ object.cpf }}</label> 
         </div>
-      </div>
+        <div class="col-md-5 d-flex flex-column">
+            <label for="id_name" class="form-label"><strong>Nome:</strong> {{ object.name }}</label>
+        </div>
+
+        <div class="col-md-5 d-flex flex-column">
+            <label for="id_mother" class="form-label"><strong>Nome da mãe:</strong> {{ object.name_mother }}</label>
+        </div>
+        <div class="col-md-4 d-flex flex-column">
+            <label for="id_email" class="form-label"><strong>E-mail:</strong> {{ object.email }}</label>
+        </div>
+        <div class="col-md-3 d-flex flex-column">
+            <label for="id_birth_date" class="form-label"><strong>Data de nascimento:</strong> {{ object.birth_date }}</label>
+        </div>
+        <div class="col-md-2 d-flex flex-column">
+            <label for="id_sex" class="form-label"><strong>Sexo:</strong> {{ object.sex }}</label>
+        </div>
+
+        <br>
+        <h2 class="fw-light"><a href="{% url 'update_contact' pk=contact_info.pk %}">Contato</i></a></h2>
+        <div class="row row-cols-2 row-cols-lg-2">
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_phone_number" class="form-label"><strong>Celular:</strong> {{ contact_info.phone_number }}</label>
+            </div>
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_emergency_contact_name" class="form-label"><strong>Nome para emergência:</strong> {{ contact_info.emergency_contact_name }}</label> 
+            </div>
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_emergency_contact_number" class="form-label"><strong>Contato para emergência:</strong> {{ contact_info.emergency_contact_number }}</label>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <h2 class="fw-light"><a href="{% url 'update_address' pk=address.pk %}">Endereço</a></h2>
+        <div class="row row-cols-2 row-cols-lg-2">
+            <div class="col-md-12 d-flex flex-column">
+                <label for="" class="form-label">{{ object.address.street }}, {{ object.address.number }}, {{ object.address.city }}, {{ object.address.state }}, CEP: {{ object.address.postal_code }}</label>
+                
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <h2 class="fw-light"><a href="{% url 'update_form_of_payment' pk=form_of_payment.pk %}">Dados Pix</a></h2>
+        <div class="row row-cols-2 row-cols-lg-2">
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_pix" class="form-label"><strong>Pix:</strong> {{ object.formofpayment.pix }}</label>
+            </div>
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_bank" class="form-label"><strong>Banco:</strong> {{ object.formofpayment.bank.bank }}</label>
+            </div>
+            <div class="col-md-12 d-flex flex-column">
+                <label for="id_typePix" class="form-label"><strong>Tipo de chave:</strong> {{ object.formofpayment.type_pix.type_pix }}</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 d-flex gap-2 mt-3">
+      <a href="{% url 'delete_employee' pk=object.pk %}" class="btn btn-danger">Deletar</a>
+      <a href="{% url 'employee' %}" class="btn btn-secondary">Voltar</a>
     </div>
   </div>
-
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Deletar Funcionário</h1>
+    </div>
+    <div class="card-body">
+      <p>Tem certeza que deseja deletar o funcionário <strong>{{ object.name }}</strong> de CPF: <strong>{{ object.cpf[0:4] }}</strong>?</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="buttons-container">
+          <button type="submit" class="btn btn-danger">Deletar Funcionário</button>
+          <a href="{% url 'update_employee' pk=object.pk %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

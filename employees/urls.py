@@ -1,12 +1,14 @@
 from django.urls import path
-from employees.views import home_view, new_person_view, list_persons_view, new_address_view, new_contact_view, new_formofpay_view, employee_detail_view
+from employees.views import HomeView, EmployeesListView, EmployeesDetailView, CreateEmployeeView, UpdateEmployeeView, DeleteEmployeeView, UpdateContactView, UpdateAddressView, UpdateFormOfPayView
 
 urlpatterns = [
-    path('', home_view, name='home'),
-    path('employee', list_persons_view, name='employee'),  # listagem de funcionários
-    path('employee/<int:pk>/', employee_detail_view, name='employee_details'),  # caminho para abrir detalhes sobre o funcionario 
-    path('register/', new_person_view, name='register_person'),  # registrar funcionário
-    path('address/', new_address_view, name='register_address'),  # registrar endereço
-    path('contact/', new_contact_view, name='register_contact'),  # registrar contato
-    path('form_of_pay/', new_formofpay_view, name='register_formofpayment'), # registrar forma de pagemnto
+    path('', HomeView.as_view(), name='home'),
+    path('employee/', EmployeesListView.as_view(), name='employee'),  # listagem de funcionários
+    path('employee/<int:pk>/', EmployeesDetailView.as_view(), name='employee_details'),  # caminho para abrir detalhes sobre o funcionario 
+    path('register-employee/', CreateEmployeeView.as_view(), name='register_employee'),  # registrar funcionário
+    path('update-employee/<int:pk>/update/', UpdateEmployeeView.as_view(), name='update_employee'),  # atualizar funcionário
+    path('update-contact/<int:pk>/update/', UpdateContactView.as_view(), name='update_contact'),  # atualizar contato
+    path('update-address/<int:pk>/update/', UpdateAddressView.as_view(), name='update_address'),  # atualizar endereço
+    path('update-form_of_payment/<int:pk>/update/', UpdateFormOfPayView.as_view(), name='update_form_of_payment'),  # atualizar forma de pagamento
+    path('delete-employee/<int:pk>/delete/', DeleteEmployeeView.as_view(), name='delete_employee'),  # deletar funcionário
 ]

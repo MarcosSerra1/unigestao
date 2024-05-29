@@ -1,95 +1,143 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views import View
+from django.db import transaction
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person
-
-def home_view(request):
-    return render(
-        request=request,
-        template_name='employees/home.html'
-    )
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from employees.models import Person, ContactInfo, Address, FormOfPayment
 
 
-def list_persons_view(request):
-    persons = Person.objects.all().order_by('id')
-    search = request.GET.get('search')
-
-    if search:
-        persons = Person.objects.filter(name__icontains=search)
-
-    return render(
-        request=request,
-        template_name='employees/list_persons.html',
-        context={ 'persons': persons })
+class HomeView(View):
+    def get(self, request):
+        return render(
+            request=request,
+            template_name='employees/home.html'
+        )
 
 
-# Define uma def de visualização para exibir os detalhes de um funcionário.
-# Esta classe herda da classe DetailView do Django, que é uma visualização genérica para exibir os detalhes de um único objeto.
-def employee_detail_view(request, pk):
-    # Recupera o funcionário com base na chave primária (pk) fornecida.
-    employee = get_object_or_404(Person, pk=pk)
+class CreateEmployeeView(View):
+    template_name = 'employees/register_employee.html'
+    
+    def get(self, request):
+        person_form = PersonModelForm()
+        contact_info_form = ContactInfoModelForm()
+        address_form = AddressModelForm()
+        form_of_payment_form = FormOfPaymentModelForm()
 
-    # Renderiza o template 'employee_details.html' com o contexto contendo o funcionário.
-    return render(request, 'employees/employee_details.html', { 'employee': employee })
+        return render(request, self.template_name, {
+            'person_form': person_form,
+            'contact_info_form': contact_info_form,
+            'address_form': address_form,
+            'form_of_payment_form': form_of_payment_form
+        })
 
+    def post(self, request):
+        person_form = PersonModelForm(request.POST)
+        contact_info_form = ContactInfoModelForm(request.POST)
+        address_form = AddressModelForm(request.POST)
+        form_of_payment_form = FormOfPaymentModelForm(request.POST)
 
+        if (person_form.is_valid() and contact_info_form.is_valid() and
+            address_form.is_valid() and form_of_payment_form.is_valid()):
+            with transaction.atomic():
+                person = person_form.save()
+                contact_info = contact_info_form.save(commit=False)
+                contact_info.employee = person
+                contact_info.save()
+                
+                address = address_form.save(commit=False)
+                address.employee = person
+                address.save()
+                
+                form_of_payment = form_of_payment_form.save(commit=False)
+                form_of_payment.employee = person
+                form_of_payment.save()
+                
+            return redirect(reverse_lazy('/employee/'))  # Redirecione para uma página de sucesso
 
-
-def new_person_view(request):
-    if request.method == 'POST':
-        new_person_form = PersonModelForm(request.POST)
-        if new_person_form.is_valid():
-            new_person_form.save()
-            return redirect('register_address')
-    else:
-        new_person_form = PersonModelForm()
-
-    return render(
-        request=request,
-        template_name='employees/register_person.html',
-        context={ 'new_person_form': new_person_form }
-    )
-
-
-def new_address_view(request):
-    if request.method == 'POST':
-        new_address_form = AddressModelForm(request.POST)
-        if new_address_form.is_valid():
-            new_address_form.save()
-            return redirect('register_contact')
-    else:
-        new_address_form = AddressModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_address.html',
-        context={ 'new_address_form': new_address_form}
-    )
-
-
-def new_contact_view(request):
-    if request.method == 'POST':
-        new_contact_form = ContactInfoModelForm(request.POST)
-        if new_contact_form.is_valid():
-            new_contact_form.save()
-            return redirect('register_formofpayment')
-    else:
-        new_contact_form = ContactInfoModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_contact.html',
-        context={ 'new_contact_form':new_contact_form }
-    )
+        return render(request, self.template_name, {
+            'person_form': person_form,
+            'contact_info_form': contact_info_form,
+            'address_form': address_form,
+            'form_of_payment_form': form_of_payment_form
+        })
 
 
-def new_formofpay_view(request):
-    if request.method == 'POST':
-        new_formofpay_form = FormOfPaymentModelForm(request.POST)
-        if new_formofpay_form.is_valid():
-            new_formofpay_form.save()
-            return redirect('employee')
-    else:
-        new_formofpay_form = FormOfPaymentModelForm()
-    return render(
-        request=request,
-        template_name='employees/register_form_payment.html',
-        context={ 'new_formofpay_form':new_formofpay_form }
-    )
+class EmployeesListView(ListView):
+    model = Person
+    template_name = 'employees/list_persons.html'
+    context_object_name = 'persons'
+
+    def get_queryset(self):
+        person = super().get_queryset().order_by('name')
+        search = self.request.GET.get('search')
+        if search:
+            person = Person.objects.filter(name__icontains=search)
+        return person
+
+
+class EmployeesDetailView(DetailView):
+    model = Person
+    template_name = 'employees/employee_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o contato do funcionário ao contexto
+        context['contact_info'] = ContactInfo.objects.get(employee=self.object)
+        # Adiciona o endereço do funcionário ao contexto
+        context['address'] = Address.objects.get(employee=self.object)
+        # Adiciona a forma de pagamento do funcionário ao contexto
+        context['form_of_payment'] = FormOfPayment.objects.get(employee=self.object)
+        return context
+
+
+class UpdateEmployeeView(UpdateView):
+    template_name = 'employees/update_employee.html'
+    model = Person
+    form_class = PersonModelForm
+    success_url = '/employee/'
+
+
+class UpdateContactView(UpdateView):
+    template_name = 'employees/update_contact.html'
+    model = ContactInfo
+    form_class = ContactInfoModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class UpdateAddressView(UpdateView):
+    template_name = 'employees/update_address.html'
+    model = Address
+    form_class = AddressModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class UpdateFormOfPayView(UpdateView):
+    template_name = 'employees/update_form_of_payment.html'
+    model = FormOfPayment
+    form_class = FormOfPaymentModelForm
+    success_url = '/employee/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona o funcionário ao contexto
+        context['employee'] = self.object.employee
+        return context
+
+
+class DeleteEmployeeView(DeleteView):
+    model = Person
+    template_name = 'employees/delete_employee.html'
+    success_url = '/employee/'
