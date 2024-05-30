@@ -1,10 +1,15 @@
 from django.contrib import admin
-from employees.models import Person, Sex, ContactInfo, Address, TypePix, Bank, FormOfPayment
+from employees.models import Person, Sex, EmployeeStatus, ContactInfo, Address, TypePix, Bank, FormOfPayment
 
 
 class SexAdm(admin.ModelAdmin):
     list_display = ('sex',)
     search_fields = ('sex',)
+
+
+class EmployeeStatusAdm(admin.ModelAdmin):
+    list_display = ('status',)
+    search_fields = ('status',)
 
 
 class PersonAdm(admin.ModelAdmin):
@@ -38,6 +43,7 @@ class FormOfPaymentAdm(admin.ModelAdmin):
 
 
 admin.site.register(Sex, SexAdm)
+admin.site.register(EmployeeStatus, EmployeeStatusAdm)
 admin.site.register(Person, PersonAdm)
 admin.site.register(ContactInfo, ContactAdm)
 admin.site.register(Address, AddressAdm)
