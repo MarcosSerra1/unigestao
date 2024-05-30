@@ -6,7 +6,7 @@
       <h1 class="card-title">Deletar Funcionário</h1>
     </div>
     <div class="card-body">
-      <p>Tem certeza que deseja deletar o funcionário <strong>{{ object.name }}</strong> de CPF: <strong>{{ object.cpf[0:4] }}</strong>?</p>
+      <p>Tem certeza que deseja deletar o funcionário <strong>{{ object.name }}</strong> de CPF: <strong>{{ object.cpf }}</strong>?</p>
       <form method="post">
         {% csrf_token %}
         <div class="buttons-container">
