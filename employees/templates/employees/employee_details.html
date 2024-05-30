@@ -28,6 +28,9 @@
         <div class="col-md-2 d-flex flex-column">
             <label for="id_sex" class="form-label"><strong>Sexo:</strong> {{ object.sex }}</label>
         </div>
+        <div class="col-md-2 d-flex flex-column {% if object.status.id == 1 %}text-success{% else %}text-danger{% endif %}">
+            <label for="id_sex" class="form-label"><strong>Status:</strong> {{ object.status }}</label>
+        </div>        
 
         <br>
         <h2 class="fw-light"><a href="{% url 'update_contact' pk=contact_info.pk %}">Contato</i></a></h2>
