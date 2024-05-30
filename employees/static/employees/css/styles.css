@@ -2,3 +2,11 @@ a{
     text-decoration: none; /* Remove o sublinhado padrão */
     color: inherit; /* Herda a cor do texto do elemento pai */
 }
+
+.text-success {
+    color: green;
+}
+
+.text-danger {
+    color: red;
+}
