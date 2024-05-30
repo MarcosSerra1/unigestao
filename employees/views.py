@@ -1,11 +1,10 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.views import View
 from django.db import transaction
-from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person, ContactInfo, Address, FormOfPayment
-
 
 class HomeView(View):
     def get(self, request):
@@ -52,8 +51,9 @@ class CreateEmployeeView(View):
                 form_of_payment = form_of_payment_form.save(commit=False)
                 form_of_payment.employee = person
                 form_of_payment.save()
-                
-            return redirect(reverse_lazy('/employee/'))  # Redirecione para uma página de sucesso
+
+            messages.success(request, 'Funcionário cadastrado com sucesso.')   
+            return redirect('/employee/') # Redirecione para uma página de sucesso
 
         return render(request, self.template_name, {
             'person_form': person_form,
