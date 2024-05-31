@@ -38,7 +38,7 @@ class BankAdm(admin.ModelAdmin):
 
 
 class FormOfPaymentAdm(admin.ModelAdmin):
-    list_display = ('employee', 'pix', 'bank', 'type_pix', 'recipient_name',)
+    list_display = ('employee', 'pix', 'bank', 'type_pix')
     search_fields = ('employee',)
 
 
