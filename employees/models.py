@@ -69,7 +69,6 @@ class FormOfPayment(models.Model):
     pix = models.CharField(max_length=50, blank=True, null=True)
     bank = models.ForeignKey(Bank, on_delete=models.PROTECT, related_name='bank_pix')
     type_pix = models.ForeignKey(TypePix, on_delete=models.PROTECT, related_name='pix')
-    recipient_name = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self) -> str:
         return f'Pix for {self.employee.name}'
