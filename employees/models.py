@@ -23,6 +23,8 @@ class Person(models.Model):
     sex = models.ForeignKey(Sex, on_delete=models.PROTECT, related_name='person_sex')
     email = models.EmailField(blank=True, null=True)
     status = models.ForeignKey(EmployeeStatus, on_delete=models.PROTECT, related_name='employee_status', default=1)  # 1 represents "Ativo"
+    create_at = models.DateTimeField(auto_now_add=True)
+    admission_date = models.DateField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
