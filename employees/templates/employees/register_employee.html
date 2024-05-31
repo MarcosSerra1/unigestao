@@ -100,13 +100,7 @@
                             <label for="id_typePix" class="form-label">Tipo de chave:</label>
                             {{ form_of_payment_form.type_pix|add_class:"form-select" }}
                         </div>
-                        <div class="col-md-12 d-flex flex-column">
-                            <label for="id_recipient_name" class="form-label">Titular:</label>
-                            {{ form_of_payment_form.recipient_name|add_class:"form-control" }}
-                        </div>
                     </div>
-
-
                 </div>
                 {% include 'employees/partials/button.html'%}
             </form>
