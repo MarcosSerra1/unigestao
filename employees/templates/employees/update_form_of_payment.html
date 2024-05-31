@@ -21,10 +21,6 @@
                         <label for="id_typePix" class="form-label">Tipo de chave:</label>
                         {{ form.type_pix|add_class:"form-select" }}
                     </div>
-                    <div class="col-md-12 d-flex flex-column">
-                        <label for="id_recipient_name" class="form-label">Titular:</label>
-                        {{ form.recipient_name|add_class:"form-control" }}
-                    </div>
                 </div>
                 {% include 'employees/partials/button_update.html' %}
             </form>
