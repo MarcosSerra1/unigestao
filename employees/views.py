@@ -59,6 +59,7 @@ class CreateEmployeeView(View):
             'person_form': person_form,
             'contact_info_form': contact_info_form,
             'address_form': address_form,
+            'form_of_payment_form': form_of_payment_form
         })
 
 
