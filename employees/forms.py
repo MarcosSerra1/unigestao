@@ -1,5 +1,5 @@
 from django import forms
-from employees.models import Person, Sex, Address, ContactInfo, FormOfPayment, Bank, TypePix
+from employees.models import Person, Address, ContactInfo, FormOfPayment
 from utils.validate_cpf import validar_cpf
 from utils.replace_special_characters import substituir_caracteres_especiais
 
@@ -72,15 +72,4 @@ class ContactInfoModelForm(forms.ModelForm):
 class FormOfPaymentModelForm(forms.ModelForm):
     class Meta:
         model = FormOfPayment
-        fields = ['pix', 'bank', 'type_pix', 'recipient_name']
-
-
-    def save(self, commit=True):
-        # Obtenha uma instância do objeto do modelo, mas não o salve ainda
-        instance = super().save(commit=False)
-        # Converte o nome do titular para maiúsculas
-        instance.recipient_name = instance.recipient_name.upper()
-        # Salva o objeto no banco de dados se commit for True
-        if commit:
-            instance.save()
-        return instance
+        fields = ['pix', 'bank', 'type_pix']
