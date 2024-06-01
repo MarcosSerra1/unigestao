@@ -98,6 +98,7 @@ class UpdateEmployeeView(UpdateView):
     form_class = PersonModelForm
 
     def get_success_url(self):
+        messages.success(self.request, 'Funcionário Atualizado com Sucesso!')
         return reverse_lazy(
             'employee_details',
             kwargs={'pk': self.object.pk}
@@ -116,6 +117,7 @@ class UpdateContactView(UpdateView):
         return context
     
     def get_success_url(self):
+        messages.success(self.request, 'Contato do Funcionário Atualizado com Sucesso!')
         return reverse_lazy(
             'employee_details',
             kwargs={'pk': self.object.employee.pk}
@@ -134,6 +136,7 @@ class UpdateAddressView(UpdateView):
         return context
     
     def get_success_url(self):
+        messages.success(self.request, 'Endereço do Funcionário Atualizado com Sucesso!')
         return reverse_lazy(
             'employee_details',
             kwargs={'pk': self.object.employee.pk}
@@ -152,6 +155,7 @@ class UpdateFormOfPayView(UpdateView):
         return context
 
     def get_success_url(self):
+        messages.success(self.request, 'Pix do Funcionário Atualizado com Sucesso!')
         return reverse_lazy(
             'employee_details',
             kwargs={'pk': self.object.employee.pk}
