@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db import transaction
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
@@ -137,7 +137,15 @@ class UpdateFormOfPayView(UpdateView):
         return context
 
 
-class DeleteEmployeeView(DeleteView):
-    model = Person
+class DeleteEmployeeView(View):
     template_name = 'employees/delete_employee.html'
-    success_url = '/employee/'
+
+    def get(self, request, pk):
+        employee = get_object_or_404(Person, pk=pk)
+        return render(request, self.template_name, {'object': employee})
+    
+    def post(self, request, pk):
+        employee = get_object_or_404(Person, pk=pk)
+        employee.delete()
+        messages.success(request, 'Funcionario Deletado com Sucesso!')
+        return redirect('/employee/')
