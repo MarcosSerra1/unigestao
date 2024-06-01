@@ -1,8 +1,9 @@
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db import transaction
-from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Person, ContactInfo, Address, FormOfPayment
 
@@ -95,46 +96,66 @@ class UpdateEmployeeView(UpdateView):
     template_name = 'employees/update_employee.html'
     model = Person
     form_class = PersonModelForm
-    success_url = '/employee/'
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'employee_details',
+            kwargs={'pk': self.object.pk}
+        )
 
 
 class UpdateContactView(UpdateView):
     template_name = 'employees/update_contact.html'
     model = ContactInfo
     form_class = ContactInfoModelForm
-    success_url = '/employee/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Adiciona o funcionário ao contexto
         context['employee'] = self.object.employee
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy(
+            'employee_details',
+            kwargs={'pk': self.object.employee.pk}
+        )
 
 
 class UpdateAddressView(UpdateView):
     template_name = 'employees/update_address.html'
     model = Address
     form_class = AddressModelForm
-    success_url = '/employee/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Adiciona o funcionário ao contexto
         context['employee'] = self.object.employee
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy(
+            'employee_details',
+            kwargs={'pk': self.object.employee.pk}
+        )
 
 
 class UpdateFormOfPayView(UpdateView):
     template_name = 'employees/update_form_of_payment.html'
     model = FormOfPayment
     form_class = FormOfPaymentModelForm
-    success_url = '/employee/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Adiciona o funcionário ao contexto
         context['employee'] = self.object.employee
         return context
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'employee_details',
+            kwargs={'pk': self.object.employee.pk}
+        )
 
 
 class DeleteEmployeeView(View):
