@@ -15,6 +15,11 @@ class PersonModelForm(forms.ModelForm):
         name = substituir_caracteres_especiais(name)
         return name
     
+    def clean_name_mother(self):
+        name_mother = self.cleaned_data.get('name_mother')
+        name_mother = substituir_caracteres_especiais(name_mother)
+        return name_mother
+
     def clean_cpf(self):
         cpf = self.cleaned_data.get('cpf')
 
@@ -48,14 +53,16 @@ class AddressModelForm(forms.ModelForm):
         fields = ['postal_code', 'street', 'number', 'state', 'city']
 
 
-
-
 # Form Contatos
 class ContactInfoModelForm(forms.ModelForm):
     class Meta:
         model = ContactInfo
         fields = ['phone_number', 'emergency_contact_name', 'emergency_contact_number']
 
+    def clean_emergency_contact_name(self):
+        emergency_contact_name = self.cleaned_data.get('emergency_contact_name')
+        emergency_contact_name = substituir_caracteres_especiais(emergency_contact_name)
+        return emergency_contact_name
 
     def save(self, commit=True):
         # Obtenha uma instância do objeto do modelo, mas não o salve ainda
