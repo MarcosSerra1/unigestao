@@ -1,5 +1,5 @@
 from django import forms
-from employees.models import Person, Sex, Address, ContactInfo, FormOfPayment, Bank, TypePix
+from employees.models import Person, Address, ContactInfo, FormOfPayment
 from utils.validate_cpf import validar_cpf
 from utils.replace_special_characters import substituir_caracteres_especiais
 
@@ -15,6 +15,11 @@ class PersonModelForm(forms.ModelForm):
         name = substituir_caracteres_especiais(name)
         return name
     
+    def clean_name_mother(self):
+        name_mother = self.cleaned_data.get('name_mother')
+        name_mother = substituir_caracteres_especiais(name_mother)
+        return name_mother
+
     def clean_cpf(self):
         cpf = self.cleaned_data.get('cpf')
 
@@ -48,14 +53,16 @@ class AddressModelForm(forms.ModelForm):
         fields = ['postal_code', 'street', 'number', 'state', 'city']
 
 
-
-
 # Form Contatos
 class ContactInfoModelForm(forms.ModelForm):
     class Meta:
         model = ContactInfo
         fields = ['phone_number', 'emergency_contact_name', 'emergency_contact_number']
 
+    def clean_emergency_contact_name(self):
+        emergency_contact_name = self.cleaned_data.get('emergency_contact_name')
+        emergency_contact_name = substituir_caracteres_especiais(emergency_contact_name)
+        return emergency_contact_name
 
     def save(self, commit=True):
         # Obtenha uma instância do objeto do modelo, mas não o salve ainda
@@ -72,15 +79,4 @@ class ContactInfoModelForm(forms.ModelForm):
 class FormOfPaymentModelForm(forms.ModelForm):
     class Meta:
         model = FormOfPayment
-        fields = ['pix', 'bank', 'type_pix', 'recipient_name']
-
-
-    def save(self, commit=True):
-        # Obtenha uma instância do objeto do modelo, mas não o salve ainda
-        instance = super().save(commit=False)
-        # Converte o nome do titular para maiúsculas
-        instance.recipient_name = instance.recipient_name.upper()
-        # Salva o objeto no banco de dados se commit for True
-        if commit:
-            instance.save()
-        return instance
+        fields = ['pix', 'bank', 'type_pix']

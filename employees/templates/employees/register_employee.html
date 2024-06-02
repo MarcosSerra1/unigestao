@@ -9,7 +9,54 @@
         <div class="container mt-5">
             <form method="post">
                 {% csrf_token %}
+
+                <!-- Exibindo erros de validação para cada campo do formulário person -->
+                {% for field in person_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ field.label }}:
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Exibindo erros de validação para cada campo do formulário contact_info -->
+                {% for field in contact_info_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Exibindo erros de validação para cada campo do formulário address -->
+                {% for field in address_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Exibindo erros de validação para cada campo do formulário form_of_payment -->
+                {% for field in form_of_payment_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
                 <div class="row  row-cols-lg-12">
+                    <h2 class="fw-light text-align-center">Dados pessoais</h2>
                     <div class="form-group col-md-2 d-flex flex-column">
                         <label for="id_cpf" class="form-label">CPF:</label>
                         {{ person_form.cpf|add_class:"form-control" }}
@@ -35,9 +82,17 @@
                         <label for="id_sex" class="form-label">Sexo:</label>
                         {{ person_form.sex|add_class:"form-select" }}
                     </div>
+                    <div class="col-md-2 d-flex flex-column">
+                        <label for="id_sex" class="form-label">Status:</label>
+                        {{ person_form.status|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-3 d-flex flex-column">
+                        <label for="id_admission_date" class="form-label">Data de admissão:</label>
+                        {{ person_form.admission_date|add_class:"form-control" }}
+                    </div>
 
+                    
                     <h2 class="fw-light text-align-center">Contato</h2>
-
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
                             <label for="id_phone_number" class="form-label">Celular:</label>
@@ -53,8 +108,8 @@
                         </div>
                     </div>
 
-                    <h2 class="fw-light text-align-center">Endereço</h2>
 
+                    <h2 class="fw-light text-align-center">Endereço</h2>
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
                             <label for="" class="form-label">CEP</label>
@@ -81,8 +136,8 @@
                         </div>
                     </div>
 
+                    
                     <h2 class="fw-light text-align-center">Forma de pagamento</h2>
-
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
                             <label for="id_pix" class="form-label">Pix:</label>
@@ -96,13 +151,7 @@
                             <label for="id_typePix" class="form-label">Tipo de chave:</label>
                             {{ form_of_payment_form.type_pix|add_class:"form-select" }}
                         </div>
-                        <div class="col-md-12 d-flex flex-column">
-                            <label for="id_recipient_name" class="form-label">Titular:</label>
-                            {{ form_of_payment_form.recipient_name|add_class:"form-control" }}
-                        </div>
                     </div>
-
-
                 </div>
                 {% include 'employees/partials/button.html'%}
             </form>

@@ -8,6 +8,13 @@ class Sex(models.Model):
         return self.sex
 
 
+class EmployeeStatus(models.Model):
+    status = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return self.status
+
+
 class Person(models.Model):
     name = models.CharField(max_length=200)
     cpf = models.CharField(max_length=15)
@@ -15,6 +22,9 @@ class Person(models.Model):
     birth_date = models.DateField(blank=True, null=True)
     sex = models.ForeignKey(Sex, on_delete=models.PROTECT, related_name='person_sex')
     email = models.EmailField(blank=True, null=True)
+    status = models.ForeignKey(EmployeeStatus, on_delete=models.PROTECT, related_name='employee_status', default=1)  # 1 represents "Ativo"
+    create_at = models.DateTimeField(auto_now_add=True)
+    admission_date = models.DateField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -61,7 +71,6 @@ class FormOfPayment(models.Model):
     pix = models.CharField(max_length=50, blank=True, null=True)
     bank = models.ForeignKey(Bank, on_delete=models.PROTECT, related_name='bank_pix')
     type_pix = models.ForeignKey(TypePix, on_delete=models.PROTECT, related_name='pix')
-    recipient_name = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self) -> str:
         return f'Pix for {self.employee.name}'
