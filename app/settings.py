@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # Meus App's
     'employees',
+    'accounts',
 ]
 
 MIDDLEWARE = [
