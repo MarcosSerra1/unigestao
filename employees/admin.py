@@ -13,7 +13,7 @@ class EmployeeStatusAdm(admin.ModelAdmin):
 
 
 class PersonAdm(admin.ModelAdmin):
-    list_display = ('name', 'cpf', 'birth_date', 'sex', 'email', 'name_mother')
+    list_display = ('name', 'cpf', 'birth_date', 'sex', 'email', 'name_mother', 'admission_date')
     search_fields = ('name',)
 
 
@@ -38,7 +38,7 @@ class BankAdm(admin.ModelAdmin):
 
 
 class FormOfPaymentAdm(admin.ModelAdmin):
-    list_display = ('employee', 'pix', 'bank', 'type_pix', 'recipient_name',)
+    list_display = ('employee', 'pix', 'bank', 'type_pix')
     search_fields = ('employee',)
 
 
