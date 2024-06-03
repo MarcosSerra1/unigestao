@@ -50,7 +50,7 @@ class PersonModelForm(forms.ModelForm):
 class AddressModelForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = ['postal_code', 'street', 'number', 'state', 'city']
+        fields = ['postal_code', 'street', 'neighborhood', 'city',  'state', 'number',]
 
 
 # Form Contatos
