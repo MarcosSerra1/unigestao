@@ -23,7 +23,7 @@ class ContactAdm(admin.ModelAdmin):
 
 
 class AddressAdm(admin.ModelAdmin):
-    list_display = ('employee', 'street', 'number', 'city', 'state', 'postal_code')
+    list_display = ('employee', 'postal_code', 'street', 'neighborhood', 'city',  'state', 'number',)
     search_fields = ('employee',)
 
 
