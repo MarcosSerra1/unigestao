@@ -1,15 +1,27 @@
 {% extends "global/base.html" %}
+{% load widget_tweaks %}
+{% block title %} Login {% endblock %}
 
 {% block content %}
 
-    <form method="post">
-        {% csrf_token %}
 
-        <table>
-            {{ form.as_table }}
-        </table>
 
-        <input type="submit" value="Entrar">
-    </form>
+<form method="post">
+    {% csrf_token %}
+    
+    <div class="input-group mb-3">
+        <label for="basic-url" class="form-label">Usuario</label>
+        <span class="input-group-text" id="basic-addon1"><i class="fi fi-rr-user"></i></span>
+        {{ form.username|add_class:"form-control" }}
+    </div>
+    
+    <div class="input-group mb-3">
+        <label for="basic-url" class="form-label">Senha</label>
+        <span class="input-group-text" id="basic-addon2"><i class="fi fi-rr-lock"></i></span>
+        {{ form.password|add_class:"form-control" }}
+    </div>
+
+    <input type="submit" value="Entrar" class="btn btn-success">
+</form>
 
 {% endblock %}
