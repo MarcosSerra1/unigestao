@@ -1,9 +1,9 @@
 {% extends "global/base.html" %}
+{% load static %}
 {% load widget_tweaks %}
 {% block title %} Cadastrar Funcionarios {% endblock %}
 
 {% block content %}
-
     <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
         <h2 class="fw-light text-align-center">Cadastro de Funcionários</h2>
         <div class="container mt-5">
@@ -55,100 +55,101 @@
                     {% endif %}
                 {% endfor %}
 
-                <div class="row  row-cols-lg-12">
+                <div class="row row-cols-lg-12">
                     <h2 class="fw-light text-align-center">Dados pessoais</h2>
                     <div class="form-group col-md-2 d-flex flex-column">
-                        <label for="id_cpf" class="form-label">CPF:</label>
+                        <label for="{{ person_form.cpf.id_for_label }}" class="form-label">CPF:</label>
                         {{ person_form.cpf|add_class:"form-control" }}
                     </div>
                     <div class="col-md-5 d-flex flex-column">
-                        <label for="id_name" class="form-label">Nome:</label>
+                        <label for="{{ person_form.name.id_for_label }}" class="form-label">Nome:</label>
                         {{ person_form.name|add_class:"form-control" }}
                     </div>
     
                     <div class="col-md-5 d-flex flex-column">
-                        <label for="id_mother" class="form-label">Nome da mãe:</label>
+                        <label for="{{ person_form.name_mother.id_for_label }}" class="form-label">Nome da mãe:</label>
                         {{ person_form.name_mother|add_class:"form-control" }}
                     </div>
                     <div class="col-md-4 d-flex flex-column">
-                        <label for="id_email" class="form-label">E-mail:</label>
+                        <label for="{{ person_form.email.id_for_label }}" class="form-label">E-mail:</label>
                         {{ person_form.email|add_class:"form-control" }}
                     </div>
                     <div class="col-md-3 d-flex flex-column">
-                        <label for="id_birth_date" class="form-label">Data de nascimento:</label>
+                        <label for="{{ person_form.birth_date.id_for_label }}" class="form-label">Data de nascimento:</label>
                         {{ person_form.birth_date|add_class:"form-control" }}
                     </div>
                     <div class="col-md-2 d-flex flex-column">
-                        <label for="id_sex" class="form-label">Sexo:</label>
+                        <label for="{{ person_form.sex.id_for_label }}" class="form-label">Sexo:</label>
                         {{ person_form.sex|add_class:"form-select" }}
                     </div>
                     <div class="col-md-2 d-flex flex-column">
-                        <label for="id_sex" class="form-label">Status:</label>
+                        <label for="{{ person_form.status.id_for_label }}" class="form-label">Status:</label>
                         {{ person_form.status|add_class:"form-select" }}
                     </div>
                     <div class="col-md-3 d-flex flex-column">
-                        <label for="id_admission_date" class="form-label">Data de admissão:</label>
+                        <label for="{{ person_form.admission_date.id_for_label }}" class="form-label">Data de admissão:</label>
                         {{ person_form.admission_date|add_class:"form-control" }}
                     </div>
 
-                    
                     <h2 class="fw-light text-align-center">Contato</h2>
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_phone_number" class="form-label">Celular:</label>
+                            <label for="{{ contact_info_form.phone_number.id_for_label }}" class="form-label">Celular:</label>
                             {{ contact_info_form.phone_number|add_class:"form-control" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_emergency_contact_name" class="form-label">Nome para emergencia:</label>
+                            <label for="{{ contact_info_form.emergency_contact_name.id_for_label }}" class="form-label">Nome para emergência:</label>
                             {{ contact_info_form.emergency_contact_name|add_class:"form-control" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_emergency_contact_number" class="form-label">Contato para emergencia:</label>
+                            <label for="{{ contact_info_form.emergency_contact_number.id_for_label }}" class="form-label">Contato para emergência:</label>
                             {{ contact_info_form.emergency_contact_number|add_class:"form-control" }}
                         </div>
                     </div>
 
-
                     <h2 class="fw-light text-align-center">Endereço</h2>
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="" class="form-label">CEP</label>
-                            {{ address_form.postal_code|add_class:"form-control" }}
+                            <label for="{{ address_form.postal_code.id_for_label }}" class="form-label">CEP</label>
+                            <div class="input-group mb-3">
+                                {{ address_form.postal_code|add_class:"form-control" }}
+                                <button type="button" onclick="pesquisacep()" class="btn btn-light"><i class="fi fi-rr-search"></i></button>
+                            </div>
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_street" class="form-label">Endereço</label>
+                            <label for="{{ address_form.street.id_for_label }}" class="form-label">Rua</label>
                             {{ address_form.street|add_class:"form-control" }}
                         </div>
-                        
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_numero" class="form-label">Número</label>
-                            {{ address_form.number|add_class:"form-control"}}
+                            <label for="{{ address_form.neighborhood.id_for_label }}" class="form-label">Bairro</label>
+                            {{ address_form.neighborhood|add_class:"form-control" }}
                         </div>
-                        
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_state" class="form-label">Estado</label>
+                            <label for="{{ address_form.city.id_for_label }}" class="form-label">Cidade</label>
+                            {{ address_form.city|add_class:"form-control" }}
+                        </div>
+                        <div class="col-md-12 d-flex flex-column">
+                            <label for="{{ address_form.state.id_for_label }}" class="form-label">Estado</label>
                             {{ address_form.state|add_class:"form-control" }}
                         </div>
-                        
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_city" class="form-label">Cidade</label>
-                            {{ address_form.city|add_class:"form-control" }}
+                            <label for="{{ address_form.number.id_for_label }}" class="form-label">Número</label>
+                            {{ address_form.number|add_class:"form-control"}}
                         </div>
                     </div>
 
-                    
                     <h2 class="fw-light text-align-center">Forma de pagamento</h2>
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_pix" class="form-label">Pix:</label>
+                            <label for="{{ form_of_payment_form.pix.id_for_label }}" class="form-label">Pix:</label>
                             {{ form_of_payment_form.pix|add_class:"form-control" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_bank" class="form-label">Banco:</label>
+                            <label for="{{ form_of_payment_form.bank.id_for_label }}" class="form-label">Banco:</label>
                             {{ form_of_payment_form.bank|add_class:"form-select" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="id_typePix" class="form-label">Tipo de chave:</label>
+                            <label for="{{ form_of_payment_form.type_pix.id_for_label }}" class="form-label">Tipo de chave:</label>
                             {{ form_of_payment_form.type_pix|add_class:"form-select" }}
                         </div>
                     </div>
@@ -158,4 +159,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'employees/js/address.js' %}"></script>
 {% endblock %}
