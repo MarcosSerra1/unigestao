@@ -44,9 +44,10 @@ class Address(models.Model):
     employee = models.OneToOneField(Person, on_delete=models.CASCADE)
     postal_code = models.CharField(max_length=20)
     street = models.CharField(max_length=255)
-    number = models.CharField(max_length=10, blank=True, null=True)
-    state = models.CharField(max_length=2)
+    neighborhood = models.CharField(max_length=255)  # Bairro
     city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2)
+    number = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self) -> str:
         return f'Address for {self.employee.name}'
