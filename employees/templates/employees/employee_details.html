@@ -54,8 +54,7 @@
         <h2 class="fw-light"><a href="{% url 'update_address' pk=address.pk %}">Endereço</a></h2>
         <div class="row row-cols-2 row-cols-lg-2">
             <div class="col-md-12 d-flex flex-column">
-                <label for="" class="form-label">{{ object.address.street }}, {{ object.address.number }}, {{ object.address.city }}, {{ object.address.state }}, CEP: {{ object.address.postal_code }}</label>
-                
+                <label for="" class="form-label">{{ object.address.street }}, {{ object.address.number }}, {{ object.address.neighborhood }}, {{ object.address.city }}, {{ object.address.state }}, CEP: {{ object.address.postal_code }}</label>
             </div>
         </div>
 
