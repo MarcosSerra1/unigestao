@@ -52,6 +52,28 @@ class AddressModelForm(forms.ModelForm):
         model = Address
         fields = ['postal_code', 'street', 'neighborhood', 'city',  'state', 'number',]
 
+    def clean_street(self):
+        street = self.cleaned_data.get('street')
+        street = substituir_caracteres_especiais(street)
+        return street
+
+    def clean_neighborhood(self):
+        neighborhood = self.cleaned_data.get('neighborhood')
+        neighborhood = substituir_caracteres_especiais(neighborhood)
+        return neighborhood
+    
+    def clean_city(self):
+        city = self.cleaned_data.get('city')
+        city = substituir_caracteres_especiais(city)
+        return city
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.number = instance.number.upper()
+        if commit:
+            instance.save()
+        return instance
+
 
 # Form Contatos
 class ContactInfoModelForm(forms.ModelForm):
