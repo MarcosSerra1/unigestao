@@ -1,27 +1,54 @@
-{% extends "global/base.html" %}
-{% load widget_tweaks %}
-{% block title %} Login {% endblock %}
+{% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br" >
 
+<head>
+	<meta charset="UTF-8">
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
+	<link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+	<title>Login</title>
+</head>
 
-
-<form method="post">
-    {% csrf_token %}
-    
-    <div class="input-group mb-3">
-        <label for="basic-url" class="form-label">Usuario</label>
-        <span class="input-group-text" id="basic-addon1"><i class="fi fi-rr-user"></i></span>
-        {{ form.username|add_class:"form-control" }}
+<body>
+<!-- partial:index.partial.html -->
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form action="{% url 'login' %}" method="POST" class="login">
+                    {% csrf_token %}
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" class="login__input" placeholder="Nome de usuário" name="username">
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" class="login__input" placeholder="Senha" name="password">
+                    </div>
+                    <button class="button login__submit">
+                        <span class="button__text">Entrar</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>				
+                </form>
+                <div class="social-login">
+                    <h3>Uni Gestão</h3>
+                    {% comment %} <div class="social-icons">
+                        <a href="#" class="social-login__icon fab fa-instagram"></a>
+                        <a href="#" class="social-login__icon fab fa-facebook"></a>
+                        <a href="#" class="social-login__icon fab fa-twitter"></a>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
+        </div>
     </div>
-    
-    <div class="input-group mb-3">
-        <label for="basic-url" class="form-label">Senha</label>
-        <span class="input-group-text" id="basic-addon2"><i class="fi fi-rr-lock"></i></span>
-        {{ form.password|add_class:"form-control" }}
-    </div>
-
-    <input type="submit" value="Entrar" class="btn btn-success">
-</form>
-
-{% endblock %}
+<!-- partial -->
+  
+</body>
+</html>
