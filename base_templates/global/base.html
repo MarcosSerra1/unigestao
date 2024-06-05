@@ -46,6 +46,11 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Financeiro</a>
                         </li>
+                        {% if user.is_authenticate %}
+                            <div class="position-absolute end-0">
+                                <button type="button" class="btn btn-danger"><strong>Sair</strong></button>
+                            </div>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
