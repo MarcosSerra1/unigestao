@@ -1,4 +1,4 @@
-function limpa_formulário_cep() {
+function limpa_formulario_cep() {
     // Limpa valores do formulário de cep.
     document.getElementById('id_street').value = "";
     document.getElementById('id_neighborhood').value = "";
@@ -16,7 +16,7 @@ function meu_callback(conteudo) {
         document.getElementById('id_state').value = (conteudo.uf);
     } else {
         // CEP não Encontrado.
-        limpa_formulário_cep();
+        limpa_formulario_cep();
         window.alert("CEP não encontrado.");
     }
 }
@@ -50,11 +50,11 @@ function pesquisacep() {
 
         } else {
             // CEP é inválido.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
             window.alert("Formato de CEP inválido.");
         }
     } else {
         // CEP sem valor, limpa formulário.
-        limpa_formulário_cep();
+        limpa_formulario_cep();
     }
 };
