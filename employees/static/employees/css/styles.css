@@ -1,3 +1,15 @@
+.custom-color {
+    color: #4c489d;
+}
+
+.custom-color:hover {
+    text-shadow: 0 1px 3px #4c489d;
+}
+
+.fi-rr-eye:hover {
+    color: #fa442d;
+}
+
 a{
     text-decoration: none; /* Remove o sublinhado padrão */
     color: inherit; /* Herda a cor do texto do elemento pai */
@@ -9,4 +21,68 @@ a{
 
 .text-danger {
     color: red;
+}
+
+/* dashboard | card */
+.info-box {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.hover-shadow-employee:hover {
+    box-shadow: 0 4px 8px #fa442d;
+}
+
+.hover-shadow-due:hover {
+    box-shadow: 0 4px 8px #21bff3;
+}
+
+.hover-shadow-advance:hover {
+    box-shadow: 0 4px 8px #ed2a92;
+}
+
+.icon-bg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.employee {
+    background-color: #4c489d;
+}
+
+.due {
+    background-color: #4c489d;
+}
+
+.advance {
+    background-color: #4c489d;
+}
+
+.employee:hover {
+    box-shadow: 0px 4px 8px #fa442d;
+}
+
+.due:hover {
+    box-shadow: 0px 4px 8px #21bff3;
+}
+
+.advance:hover {
+    box-shadow: 0px 4px 8px #ed2a92;
+}
+
+.icon-bg i {
+    font-size: 2em;
+    color: white;
+}
+
+.number {
+    font-size: 1.5em;
+    font-weight: bold;
 }
