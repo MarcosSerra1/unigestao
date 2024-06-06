@@ -6,7 +6,7 @@
         <h2 class="fw-light text-align-center"><strong>Ficha Registro</strong></h2>
 
             <div class="row row-cols-lg-12">
-                <p><a href="{% url 'update_employee' pk=object.pk %}" class="link-primary"><strong>Informações Pessoais</strong> <i class="fi fi-rr-user"></i></a></p>
+                <p><a href="{% url 'update_employee' pk=object.pk %}" class="custom-color"><strong>Informações Pessoais</strong> <i class="fi fi-rr-user"></i></a></p>
                 <div class="form-group col-md-2 d-flex flex-column">
                     <p class="text-start"><strong>CPF:</strong> {{ object.cpf }}</p>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
 
                 <br>
-                <p><a href="{% url 'update_contact' pk=contact_info.pk %}" class="link-primary"><strong>Contato</strong><i class="fi fi-rr-phone-call"></i></a></p>
+                <p><a href="{% url 'update_contact' pk=contact_info.pk %}" class="custom-color"><strong>Contato</strong><i class="fi fi-rr-phone-call"></i></a></p>
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <p class="text-start"><strong>Celular:</strong> {{ contact_info.phone_number }}</p>
@@ -48,7 +48,7 @@
                 </div>
 
                 <br>
-                <p><a href="{% url 'update_address' pk=address.pk %}" class="link-primary"><strong>Endereço</strong> <i
+                <p><a href="{% url 'update_address' pk=address.pk %}" class="custom-color"><strong>Endereço</strong> <i
                             class="fi fi-rr-marker"></i></a></p>
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
@@ -57,8 +57,7 @@
                 </div>
 
                 <br>
-                <p><a href="{% url 'update_form_of_payment' pk=form_of_payment.pk %}" class="link-primary"><strong>Dados
-                            Pix</strong> <i class="fi fi-rr-hand-holding-usd"></i></a></p>
+                <p><a href="{% url 'update_form_of_payment' pk=form_of_payment.pk %}" class="custom-color"><strong>Dados Pix</strong> <i class="fi fi-rr-hand-holding-usd"></i></a></p>
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
                         <p class="text-start"><strong>Pix:</strong> {{ object.formofpayment.pix }}</p>
