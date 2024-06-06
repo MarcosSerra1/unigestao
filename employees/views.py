@@ -5,14 +5,24 @@ from django.views import View
 from django.db import transaction
 from django.views.generic import ListView, DetailView, UpdateView
 from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person, ContactInfo, Address, FormOfPayment
+from employees.models import Person, ContactInfo, Address, FormOfPayment, EmployeeInventory
 
 class HomeView(View):
+    template_name = 'employees/home.html'
+
     def get(self, request):
+        employee_inventory = EmployeeInventory.objects.first()
+        if not employee_inventory:
+            employee_inventory = EmployeeInventory(employee_count=0)
+            employee_inventory.save()
+
         return render(
             request=request,
-            template_name='employees/home.html',
-            context={'url': 'home'}
+            template_name=self.template_name,
+            context={
+                'url': 'home',
+                'employee_inventory': employee_inventory,
+            }
         )
 
 
@@ -25,12 +35,16 @@ class CreateEmployeeView(View):
         address_form = AddressModelForm()
         form_of_payment_form = FormOfPaymentModelForm()
 
-        return render(request, self.template_name, {
-            'person_form': person_form,
-            'contact_info_form': contact_info_form,
-            'address_form': address_form,
-            'form_of_payment_form': form_of_payment_form
-        })
+        return render(
+            request=request,
+            template_name=self.template_name, 
+            context={
+                'person_form': person_form,
+                'contact_info_form': contact_info_form,
+                'address_form': address_form,
+                'form_of_payment_form': form_of_payment_form
+            }
+        )
 
     def post(self, request):
         person_form = PersonModelForm(request.POST)
