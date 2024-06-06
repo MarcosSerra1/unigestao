@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+.button-bottom {
+    padding-bottom: 50px;
+}
+
 .custom-color {
     color: #4c489d;
 }
