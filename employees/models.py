@@ -75,3 +75,14 @@ class FormOfPayment(models.Model):
 
     def __str__(self) -> str:
         return f'Pix for {self.employee.name}'
+
+
+class EmployeeInventory(models.Model):
+    employee_count = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return str(self.employee_count)
