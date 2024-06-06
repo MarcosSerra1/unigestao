@@ -11,7 +11,8 @@ class HomeView(View):
     def get(self, request):
         return render(
             request=request,
-            template_name='employees/home.html'
+            template_name='employees/home.html',
+            context={'url': 'home'}
         )
 
 
