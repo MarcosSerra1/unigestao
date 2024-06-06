@@ -1,5 +1,5 @@
 from django.contrib import admin
-from employees.models import Person, Sex, EmployeeStatus, ContactInfo, Address, TypePix, Bank, FormOfPayment
+from employees.models import Person, Sex, EmployeeStatus, ContactInfo, Address, TypePix, Bank, FormOfPayment, EmployeeInventory
 
 
 class SexAdm(admin.ModelAdmin):
@@ -42,6 +42,11 @@ class FormOfPaymentAdm(admin.ModelAdmin):
     search_fields = ('employee',)
 
 
+class EmployeeInventoryAdm(admin.ModelAdmin):
+    list_display = ('employee_count',)
+    search_fields = ('employee_count',)
+
+
 admin.site.register(Sex, SexAdm)
 admin.site.register(EmployeeStatus, EmployeeStatusAdm)
 admin.site.register(Person, PersonAdm)
@@ -50,3 +55,4 @@ admin.site.register(Address, AddressAdm)
 admin.site.register(TypePix, TypePixAdm)
 admin.site.register(Bank, BankAdm)
 admin.site.register(FormOfPayment, FormOfPaymentAdm)
+admin.site.register(EmployeeInventory, EmployeeInventoryAdm)
