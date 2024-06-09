@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db import transaction
 from django.views.generic import ListView, DetailView, UpdateView
-from employees.forms import PersonModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Person, ContactInfo, Address, FormOfPayment, EmployeeInventory
+from employees.forms import EmployeeModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
+from employees.models import Employee, ContactInfo, Address, FormOfPayment, EmployeeInventory
 
 class HomeView(View):
     template_name = 'employees/home.html'
@@ -30,7 +30,7 @@ class CreateEmployeeView(View):
     template_name = 'employees/register_employee.html'
     
     def get(self, request):
-        person_form = PersonModelForm()
+        person_form = EmployeeModelForm()
         contact_info_form = ContactInfoModelForm()
         address_form = AddressModelForm()
         form_of_payment_form = FormOfPaymentModelForm()
@@ -47,7 +47,7 @@ class CreateEmployeeView(View):
         )
 
     def post(self, request):
-        person_form = PersonModelForm(request.POST)
+        person_form = EmployeeModelForm(request.POST)
         contact_info_form = ContactInfoModelForm(request.POST)
         address_form = AddressModelForm(request.POST)
         form_of_payment_form = FormOfPaymentModelForm(request.POST)
@@ -80,7 +80,7 @@ class CreateEmployeeView(View):
 
 
 class EmployeesListView(ListView):
-    model = Person
+    model = Employee
     template_name = 'employees/list_persons.html'
     context_object_name = 'persons'
 
@@ -88,12 +88,12 @@ class EmployeesListView(ListView):
         person = super().get_queryset().order_by('name')
         search = self.request.GET.get('search')
         if search:
-            person = Person.objects.filter(name__icontains=search)
+            person = Employee.objects.filter(name__icontains=search)
         return person
 
 
 class EmployeesDetailView(DetailView):
-    model = Person
+    model = Employee
     template_name = 'employees/employee_details.html'
 
     def get_context_data(self, **kwargs):
@@ -109,8 +109,8 @@ class EmployeesDetailView(DetailView):
 
 class UpdateEmployeeView(UpdateView):
     template_name = 'employees/update_employee.html'
-    model = Person
-    form_class = PersonModelForm
+    model = Employee
+    form_class = EmployeeModelForm
 
     def get_success_url(self):
         messages.success(self.request, 'Funcionário Atualizado com Sucesso!')
@@ -181,11 +181,11 @@ class DeleteEmployeeView(View):
     template_name = 'employees/delete_employee.html'
 
     def get(self, request, pk):
-        employee = get_object_or_404(Person, pk=pk)
+        employee = get_object_or_404(Employee, pk=pk)
         return render(request, self.template_name, {'object': employee})
     
     def post(self, request, pk):
-        employee = get_object_or_404(Person, pk=pk)
+        employee = get_object_or_404(Employee, pk=pk)
         employee.delete()
         messages.success(request, 'Funcionario Deletado com Sucesso!')
         return redirect('/employee/')

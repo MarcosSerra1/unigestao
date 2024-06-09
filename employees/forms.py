@@ -1,13 +1,13 @@
 from django import forms
-from employees.models import Person, Address, ContactInfo, FormOfPayment
+from employees.models import Employee, Address, ContactInfo, FormOfPayment
 from utils.validate_cpf import validar_cpf
 from utils.replace_special_characters import substituir_caracteres_especiais
 
 
 # Form Funcionario
-class PersonModelForm(forms.ModelForm):
+class EmployeeModelForm(forms.ModelForm):
     class Meta:
-        model = Person
+        model = Employee
         fields = '__all__'
 
     def clean_name(self):
