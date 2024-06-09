@@ -23,22 +23,6 @@ body {
     padding-bottom: 50px;
 }
 
-.custom-color {
-    color: #4c489d;
-}
-
-.custom-color:hover {
-    text-shadow: 0 1px 3px #4c489d;
-}
-
-.fi-rr-eye {
-    color: var(--color-aqua-weak);
-}
-
-.fi-rr-eye:hover {
-    color: var(--color-aqua-strong);
-}
-
 a{
     text-decoration: none; /* Remove o sublinhado padrão */
     color: inherit; /* Herda a cor do texto do elemento pai */
