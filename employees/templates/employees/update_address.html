@@ -13,24 +13,30 @@
                         <label for="" class="form-label">CEP</label>
                         {{ form.postal_code|add_class:"form-control" }}
                     </div>
+
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_street" class="form-label">Endereço</label>
+                        <label for="id_street" class="form-label">Rua</label>
                         {{ form.street|add_class:"form-control" }}
                     </div>
-                    
+
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_numero" class="form-label">Número</label>
-                        {{ form.number|add_class:"form-control"}}
-                    </div>
-                    
-                    <div class="col-md-12 d-flex flex-column">
-                        <label for="id_state" class="form-label">Estado</label>
-                        {{ form.state|add_class:"form-control" }}
+                        <label for="id_street" class="form-label">Bairro</label>
+                        {{ form.neighborhood|add_class:"form-control" }}
                     </div>
                     
                     <div class="col-md-12 d-flex flex-column">
                         <label for="id_city" class="form-label">Cidade</label>
                         {{ form.city|add_class:"form-control" }}
+                    </div>
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_state" class="form-label">Estado</label>
+                        {{ form.state|add_class:"form-control" }}
+                    </div>
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="id_numero" class="form-label">Número</label>
+                        {{ form.number|add_class:"form-control"}}
                     </div>
                 </div>
                 {% include 'employees/partials/button_update.html' %}
