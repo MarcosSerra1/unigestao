@@ -1,6 +1,20 @@
+/* Variaveis  */
+:root {
+    /* Colors */
+    --color-backgound: #f8f8f8;
+    --color-grapefruit-strong: #DA4453;
+    --color-grapefruit-weak: #ED5565;
+    --color-bittersweet-strong: #E9573F;
+    --color-bittersweet-weak: #FC6E51;
+    --color-sunflower-strong: #F6BB42;
+    --color-sunflower-weak: #FFCE54;
+    --color-aqua-strong: #3BAFDA;
+    --color-aqua-weak: #4FC1E9;
+}
+
 /* Estilo para o corpo */
 body {
-    background-color: #f8f8f8;
+    background-color: var(--color-backgound);
     margin: 0;
     padding: 0;
 }
@@ -17,8 +31,12 @@ body {
     text-shadow: 0 1px 3px #4c489d;
 }
 
+.fi-rr-eye {
+    color: var(--color-aqua-weak);
+}
+
 .fi-rr-eye:hover {
-    color: #fa442d;
+    color: var(--color-aqua-strong);
 }
 
 a{
@@ -43,15 +61,15 @@ a{
 }
 
 .hover-shadow-employee:hover {
-    box-shadow: 0 4px 8px #fa442d;
+    box-shadow: 0 4px 8px var(--color-aqua-strong);
 }
 
 .hover-shadow-due:hover {
-    box-shadow: 0 4px 8px #21bff3;
+    box-shadow: 0 4px 8px var(--color-bittersweet-strong);
 }
 
 .hover-shadow-advance:hover {
-    box-shadow: 0 4px 8px #ed2a92;
+    box-shadow: 0 4px 8px var(--color-sunflower-strong);
 }
 
 .icon-bg{
@@ -65,27 +83,27 @@ a{
 }
 
 .employee {
-    background-color: #4c489d;
+    background-color: var(--color-aqua-strong);
 }
 
 .due {
-    background-color: #4c489d;
+    background-color: var(--color-bittersweet-strong);
 }
 
 .advance {
-    background-color: #4c489d;
+    background-color: var(--color-sunflower-strong);
 }
 
 .employee:hover {
-    box-shadow: 0px 4px 8px #fa442d;
+    box-shadow: 0px 4px 8px var(--color-aqua-weak);
 }
 
 .due:hover {
-    box-shadow: 0px 4px 8px #21bff3;
+    box-shadow: 0px 4px 8px var(--color-bittersweet-weak);
 }
 
 .advance:hover {
-    box-shadow: 0px 4px 8px #ed2a92;
+    box-shadow: 0px 4px 8px var(--color-sunflower-weak);
 }
 
 .icon-bg i {
