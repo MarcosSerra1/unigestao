@@ -1,0 +1,63 @@
+/* dashboard | card */
+.info-box {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.hover-shadow-employee:hover {
+    box-shadow: 0 4px 8px var(--color-aqua-strong);
+}
+
+.hover-shadow-due:hover {
+    box-shadow: 0 4px 8px var(--color-bittersweet-strong);
+}
+
+.hover-shadow-advance:hover {
+    box-shadow: 0 4px 8px var(--color-sunflower-strong);
+}
+
+.icon-bg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.employee {
+    background-color: var(--color-aqua-strong);
+}
+
+.due {
+    background-color: var(--color-bittersweet-strong);
+}
+
+.advance {
+    background-color: var(--color-sunflower-strong);
+}
+
+.employee:hover {
+    box-shadow: 0px 4px 8px var(--color-aqua-weak);
+}
+
+.due:hover {
+    box-shadow: 0px 4px 8px var(--color-bittersweet-weak);
+}
+
+.advance:hover {
+    box-shadow: 0px 4px 8px var(--color-sunflower-weak);
+}
+
+.icon-bg i {
+    font-size: 2em;
+    color: white;
+}
+
+.number {
+    font-size: 1.5em;
+    font-weight: bold;
+}
