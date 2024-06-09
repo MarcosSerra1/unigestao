@@ -1,5 +1,8 @@
 {% extends "global/base.html" %}
 {% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'employees/css/styles-card.css' %}">
+{% endblock styles %}
 {% block title %} Home {% endblock %}
 
 {% block content %}
