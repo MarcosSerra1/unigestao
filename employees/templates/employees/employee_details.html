@@ -5,75 +5,92 @@
     <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
         <h2 class="fw-light text-align-center"><strong>Ficha Registro</strong></h2>
 
-            <div class="row row-cols-lg-12">
-                <p><a href="{% url 'update_employee' pk=object.pk %}" class="custom-color"><strong>Informações Pessoais</strong> <i class="fi fi-rr-user"></i></a></p>
-                <div class="form-group col-md-2 d-flex flex-column">
-                    <p class="text-start"><strong>CPF:</strong> {{ object.cpf }}</p>
-                </div>
-                <div class="col-md-5 d-flex flex-column">
-                    <p class="text-start"><strong>Nome:</strong> {{ object.name }}</p>
-                </div>
-                <div class="col-md-5 d-flex flex-column">
-                    <p class="text-start"><strong>Nome da mãe:</strong> {{ object.name_mother }}</p>
-                </div>
-                <div class="col-md-4 d-flex flex-column">
-                    <p class="text-start"><strong>E-mail:</strong> {{ object.email }}</p>
-                </div>
-                <div class="col-md-3 d-flex flex-column">
-                    <p class="text-start"><strong>Data de nascimento:</strong> {{ object.birth_date }}</p>
-                </div>
-                <div class="col-md-3 d-flex flex-column">
-                    <p class="text-start"><strong>Data de admissão:</strong> {{ object.admission_date }}</p>
-                </div>
-                <div class="col-md-2 d-flex flex-column">
-                    <p class="text-start"><strong>Sexo:</strong> {{ object.sex }}</p>
-                </div>
-                <div
-                    class="col-md-2 d-flex flex-column {% if object.status.id == 1 %}text-success{% else %}text-danger{% endif %}">
-                    <p class="text-start"><strong>Status:</strong> {{ object.status }}</p>
-                </div>
+        <div class="row row-cols-lg-12">
+            <p>
+                <strong>Informações Pessoais</strong>
+                <a href="{% url 'update_employee' pk=object.pk %}" class="custom-color">
+                    <i class="fi fi-rr-edit text-info ms-2"></i>
+                </a>
+            </p>
+            <div class="col-md-5 d-flex flex-column">
+                <p class="text-start"><strong>Nome:</strong> {{ object.name }}</p>
+            </div>
+            <div class="col-md-2 d-flex flex-column">
+                <p class="text-start"><strong>CPF:</strong> {{ object.cpf }}</p>
+            </div>
+            <div class="col-md-5 d-flex flex-column">
+                <p class="text-start"><strong>Nome da mãe:</strong> {{ object.name_mother }}</p>
+            </div>
+            <div class="col-md-4 d-flex flex-column">
+                <p class="text-start"><strong>E-mail:</strong> {{ object.email }}</p>
+            </div>
+            <div class="col-md-5 d-flex flex-column">
+                <p class="text-start"><strong>Data de nascimento:</strong> {{ object.birth_date }}</p>
+            </div>
+            <div class="col-md-3 d-flex flex-column">
+                <p class="text-start"><strong>Data de admissão:</strong> {{ object.admission_date }}</p>
+            </div>
+            <div class="col-md-2 d-flex flex-column">
+                <p class="text-start"><strong>Sexo:</strong> {{ object.sex }}</p>
+            </div>
+            <div class="col-md-2 d-flex flex-column {% if object.status.id == 1 %}text-success{% else %}text-danger{% endif %}">
+                <p class="text-start"><strong>Status:</strong> {{ object.status }}</p>
+            </div>
 
-                <br>
-                <p><a href="{% url 'update_contact' pk=contact_info.pk %}" class="custom-color"><strong>Contato</strong><i class="fi fi-rr-phone-call"></i></a></p>
-                <div class="row row-cols-2 row-cols-lg-2">
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start"><strong>Celular:</strong> {{ contact_info.phone_number }}</p>
-                    </div>
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start"><strong>Nome para emergência:</strong> {{ contact_info.emergency_contact_name }}</p>
-                    </div>
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start"><strong>Contato para emergência:</strong> {{ contact_info.emergency_contact_number }}</p>
-                    </div>
+            <br>
+            <p>
+                <strong>Contato</strong>
+                <a href="{% url 'update_contact' pk=contact_info.pk %}" class="custom-color">
+                    <i class="fi fi-rr-edit text-info ms-2"></i>
+                </a>
+            </p>
+            <div class="row row-cols-2 row-cols-lg-2">
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start"><strong>Celular:</strong> {{ contact_info.phone_number }}</p>
                 </div>
-
-                <br>
-                <p><a href="{% url 'update_address' pk=address.pk %}" class="custom-color"><strong>Endereço</strong> <i
-                            class="fi fi-rr-marker"></i></a></p>
-                <div class="row row-cols-2 row-cols-lg-2">
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start">{{ object.address.street }}, {{ object.address.number }}, {{ object.address.neighborhood }}, {{ object.address.city }}, {{ object.address.state }}, CEP: {{ object.address.postal_code }}</p>
-                    </div>
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start"><strong>Nome para emergência:</strong> {{ contact_info.emergency_contact_name }}</p>
                 </div>
-
-                <br>
-                <p><a href="{% url 'update_form_of_payment' pk=form_of_payment.pk %}" class="custom-color"><strong>Dados Pix</strong> <i class="fi fi-rr-hand-holding-usd"></i></a></p>
-                <div class="row row-cols-2 row-cols-lg-2">
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start"><strong>Pix:</strong> {{ object.formofpayment.pix }}</p>
-                    </div>
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="form-label"><strong>Banco:</strong> {{ object.formofpayment.bank.bank }}</p>
-                    </div>
-                    <div class="col-md-12 d-flex flex-column">
-                        <p class="text-start"><strong>Tipo de chave:</strong> {{ object.formofpayment.type_pix.type_pix }}
-                        </p>
-                    </div>
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start"><strong>Contato para emergência:</strong> {{ contact_info.emergency_contact_number }}</p>
                 </div>
             </div>
-            <div class="col-md-12 d-flex gap-2 mt-3">
-                <a href="{% url 'delete_employee' pk=object.pk %}" class="btn btn-danger">Deletar</a>
-                <a href="{% url 'employee' %}" class="btn btn-primary">Voltar</a>
+
+            <br>
+            <p>
+                <strong>Endereço</strong>
+                <a href="{% url 'update_address' pk=address.pk %}" class="custom-color">
+                    <i class="fi fi-rr-edit text-info ms-2"></i>
+                </a>
+            </p>
+            <div class="row row-cols-2 row-cols-lg-2">
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start">{{ object.address.street }}, {{ object.address.number }}, {{ object.address.neighborhood }}, {{ object.address.city }}, {{ object.address.state }}, CEP: {{ object.address.postal_code }}</p>
+                </div>
             </div>
+
+            <br>
+            <p>
+                <strong>Dados Pix</strong>
+                <a href="{% url 'update_form_of_payment' pk=form_of_payment.pk %}" class="custom-color">
+                    <i class="fi fi-rr-edit text-info ms-2"></i>
+                </a>
+            </p>
+            <div class="row row-cols-2 row-cols-lg-2">
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start"><strong>Pix:</strong> {{ object.formofpayment.pix }}</p>
+                </div>
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="form-label"><strong>Banco:</strong> {{ object.formofpayment.bank.bank }}</p>
+                </div>
+                <div class="col-md-12 d-flex flex-column">
+                    <p class="text-start"><strong>Tipo de chave:</strong> {{ object.formofpayment.type_pix.type_pix }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex gap-2 mt-3">
+            <a href="{% url 'delete_employee' pk=object.pk %}" class="btn btn-danger">Deletar</a>
+            <a href="{% url 'employee' %}" class="btn btn-primary">Voltar</a>
+        </div>
     </div>
 {% endblock %}
