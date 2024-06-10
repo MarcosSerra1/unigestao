@@ -4,7 +4,7 @@
 {% block title %} Cadastrar Funcionarios {% endblock %}
 
 {% block content %}
-    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+    <div class="container-fluid d-flex justify-content-center align-items-center flex-column mt-5">
         <h2 class="fw-light text-align-center">Cadastro de Funcionários</h2>
         <div class="container mt-5">
             <form method="post">
@@ -90,6 +90,10 @@
                         <label for="{{ person_form.admission_date.id_for_label }}" class="form-label">Data de admissão:</label>
                         {{ person_form.admission_date|add_class:"form-control" }}
                     </div>
+                    <div class="col-md-3 d-flex flex-column">
+                        <label for="{{ person_form.office.id_for_label }}" class="form-label">Profissão:</label>
+                        {{ person_form.office|add_class:"form-select" }}
+                    </div>
 
                     <h2 class="fw-light text-align-center">Contato</h2>
                     <div class="row row-cols-2 row-cols-lg-2">
@@ -98,11 +102,11 @@
                             {{ contact_info_form.phone_number|add_class:"form-control" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="{{ contact_info_form.emergency_contact_name.id_for_label }}" class="form-label">Nome para emergência:</label>
+                            <label for="{{ contact_info_form.emergency_contact_name.id_for_label }}" class="form-label">Nome emergência:</label>
                             {{ contact_info_form.emergency_contact_name|add_class:"form-control" }}
                         </div>
                         <div class="col-md-12 d-flex flex-column">
-                            <label for="{{ contact_info_form.emergency_contact_number.id_for_label }}" class="form-label">Contato para emergência:</label>
+                            <label for="{{ contact_info_form.emergency_contact_number.id_for_label }}" class="form-label">Contato emergência:</label>
                             {{ contact_info_form.emergency_contact_number|add_class:"form-control" }}
                         </div>
                     </div>
@@ -113,7 +117,7 @@
                             <label for="{{ address_form.postal_code.id_for_label }}" class="form-label">CEP</label>
                             <div class="input-group mb-3">
                                 {{ address_form.postal_code|add_class:"form-control" }}
-                                <button type="button" onclick="pesquisacep()" class="btn btn-light"><i class="fi fi-rr-search"></i></button>
+                                <button type="button" onclick="pesquisacep()" class="btn btn-warning"><i class="fi fi-rr-search"></i></button>
                             </div>
                         </div>
                         <div class="col-md-12 d-flex flex-column">
@@ -157,7 +161,7 @@
                 <div class="col-md-12 d-flex gap-2 mt-3 button-bottom">
                     <button type="submit" class="btn btn-success">Cadastrar</button>
                     <button type="reset" class="btn btn-primary">Limpar Campos</button>
-                    <a href="{% url 'employee' %}" class="btn btn-primary">Voltar</a>
+                    <a href="{% url 'employee' %}" class="btn btn-warning">Voltar</a>
                 </div>
             </form>
         </div>
