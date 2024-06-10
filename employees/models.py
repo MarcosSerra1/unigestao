@@ -18,6 +18,9 @@ class EmployeeStatus(models.Model):
 class Office(models.Model):
     office = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return self.office
+
 
 class Employee(models.Model):
     name = models.CharField(max_length=200)
