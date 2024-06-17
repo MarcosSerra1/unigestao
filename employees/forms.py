@@ -1,13 +1,13 @@
 from django import forms
-from employees.models import Person, Address, ContactInfo, FormOfPayment
+from employees.models import Employee, Address, ContactInfo, FormOfPayment
 from utils.validate_cpf import validar_cpf
 from utils.replace_special_characters import substituir_caracteres_especiais
 
 
 # Form Funcionario
-class PersonModelForm(forms.ModelForm):
+class EmployeeModelForm(forms.ModelForm):
     class Meta:
-        model = Person
+        model = Employee
         fields = '__all__'
 
     def clean_name(self):
@@ -50,7 +50,29 @@ class PersonModelForm(forms.ModelForm):
 class AddressModelForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = ['postal_code', 'street', 'number', 'state', 'city']
+        fields = ['postal_code', 'street', 'neighborhood', 'city',  'state', 'number',]
+
+    def clean_street(self):
+        street = self.cleaned_data.get('street')
+        street = substituir_caracteres_especiais(street)
+        return street
+
+    def clean_neighborhood(self):
+        neighborhood = self.cleaned_data.get('neighborhood')
+        neighborhood = substituir_caracteres_especiais(neighborhood)
+        return neighborhood
+    
+    def clean_city(self):
+        city = self.cleaned_data.get('city')
+        city = substituir_caracteres_especiais(city)
+        return city
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.number = instance.number.upper()
+        if commit:
+            instance.save()
+        return instance
 
 
 # Form Contatos

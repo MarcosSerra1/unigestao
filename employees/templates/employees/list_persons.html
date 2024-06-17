@@ -13,6 +13,11 @@
         <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
+      <div class="row">
+            <div class="float-end">
+                <a class="btn btn-outline-success" href="{% url 'register_employee' %}"><i class="fi fi-rr-user-add"></i></a>   
+            </div>
+      </div>
     </div>
   </nav>
 
@@ -36,7 +41,7 @@
               <td>{{ person.email }}</td>
               <td>{{ person.cpf }}</td>
               <td>{{ person.contactinfo.phone_number }}</td>
-              <td><a href="{% url 'employee_details' person.id %}"><i class="fi fi-rr-eye"></i> Detalhes</a></td>
+              <td><a href="{% url 'employee_details' person.id %}">&nbsp &nbsp &nbsp<i class="fi fi-rr-eye text-info ms-2"></i></a></td>
           </tr>
         {% endfor %}
       </tbody>

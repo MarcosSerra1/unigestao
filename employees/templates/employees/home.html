@@ -1,10 +1,61 @@
 {% extends "global/base.html" %}
 {% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'employees/css/styles-card.css' %}">
+{% endblock styles %}
+{% block title %} Home {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid d-flex justify-content-center align-items-center flex-column">
-    <h1 class="fw-light">Página Inicial</h1>
-</div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="container">
+            <h1 class="h2">Dashboard</h1>
+        </div>
+    </div>
+
+    <!-- Info Boxes -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="info-box bg-white p-3 text-center hover-shadow-employee">
+                    <a href="{% url 'employee' %}">
+                        <div class="icon-bg mx-auto employee">
+                            <i class="fi fi-rr-user"></i>
+                        </div>
+                    </a>
+                    <div class="number"> {{ employee_inventory.employee_count }} </div>
+                    <p>Pessoal</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="info-box bg-white p-3 text-center hover-shadow-due">
+                        <a href="#">
+                            <div class="icon-bg mx-auto due">
+                                <i class="fi fi-rr-usd-circle"></i>
+                            </div>
+                        </a>
+                        <div class="number">R$ 1230.50</div>
+                        <p>Financeiro</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="info-box bg-white p-3 text-center hover-shadow-advance">
+                    <a href="#">
+                        <div class="icon-bg mx-auto advance">
+                            <i class="fi fi-rr-box-open"></i>
+                        </div>
+                    </a>
+                    <div class="number">100.00</div>
+                    <p>Produtos</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include "global/partials/footer.html" %}
         
 {% endblock %}
