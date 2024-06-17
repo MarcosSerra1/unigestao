@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,6 +9,8 @@ from django.views.generic import ListView, DetailView, UpdateView
 from employees.forms import EmployeeModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
 from employees.models import Employee, ContactInfo, Address, FormOfPayment, EmployeeInventory
 
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class HomeView(View):
     template_name = 'employees/home.html'
 
@@ -26,6 +30,7 @@ class HomeView(View):
         )
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CreateEmployeeView(View):
     template_name = 'employees/register_employee.html'
     
@@ -79,6 +84,7 @@ class CreateEmployeeView(View):
         })
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class EmployeesListView(ListView):
     model = Employee
     template_name = 'employees/list_persons.html'
@@ -92,6 +98,7 @@ class EmployeesListView(ListView):
         return person
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class EmployeesDetailView(DetailView):
     model = Employee
     template_name = 'employees/employee_details.html'
@@ -107,6 +114,7 @@ class EmployeesDetailView(DetailView):
         return context
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateEmployeeView(UpdateView):
     template_name = 'employees/update_employee.html'
     model = Employee
@@ -120,6 +128,7 @@ class UpdateEmployeeView(UpdateView):
         )
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateContactView(UpdateView):
     template_name = 'employees/update_contact.html'
     model = ContactInfo
@@ -139,6 +148,7 @@ class UpdateContactView(UpdateView):
         )
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateAddressView(UpdateView):
     template_name = 'employees/update_address.html'
     model = Address
@@ -158,6 +168,7 @@ class UpdateAddressView(UpdateView):
         )
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateFormOfPayView(UpdateView):
     template_name = 'employees/update_form_of_payment.html'
     model = FormOfPayment
@@ -177,6 +188,7 @@ class UpdateFormOfPayView(UpdateView):
         )
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DeleteEmployeeView(View):
     template_name = 'employees/delete_employee.html'
 
