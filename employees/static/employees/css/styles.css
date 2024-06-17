@@ -1,6 +1,31 @@
+/* Variaveis  */
+:root {
+    /* Colors */
+    --color-backgound: #f8f8f8;
+    --color-grapefruit-strong: #DA4453;
+    --color-grapefruit-weak: #ED5565;
+    --color-bittersweet-strong: #E9573F;
+    --color-bittersweet-weak: #FC6E51;
+    --color-sunflower-strong: #F6BB42;
+    --color-sunflower-weak: #FFCE54;
+    --color-aqua-strong: #3BAFDA;
+    --color-aqua-weak: #4FC1E9;
+}
+
+/* Estilo para o corpo */
+body {
+    background-color: var(--color-backgound);
+    margin: 0;
+    padding: 0;
+}
+
 a{
     text-decoration: none; /* Remove o sublinhado padrão */
     color: inherit; /* Herda a cor do texto do elemento pai */
+}
+
+.button-bottom {
+    padding-bottom: 50px;
 }
 
 .text-success {
@@ -10,3 +35,4 @@ a{
 .text-danger {
     color: red;
 }
+

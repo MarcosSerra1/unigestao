@@ -1,4 +1,5 @@
 {% extends "global/base.html" %}
+{% load static %}
 {% load widget_tweaks %}
 {% block title %} Atualizar Endereço {% endblock %}
 
@@ -10,31 +11,44 @@
                 {% csrf_token %}
                 <div class="row row-cols-2 row-cols-lg-2">
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="" class="form-label">CEP</label>
-                        {{ form.postal_code|add_class:"form-control" }}
+                        <label for="{{ form.postal_code.id_for_label }}" class="form-label">CEP</label>
+                        <div class="input-group mb-3">
+                            {{ form.postal_code|add_class:"form-control" }}
+                            <button type="button" onclick="pesquisacep()" class="btn btn-light"><i class="fi fi-rr-search"></i></button>
+                        </div>
                     </div>
+
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_street" class="form-label">Endereço</label>
+                        <label for="{{ form.street.id_for_label }}" class="form-label">Rua</label>
                         {{ form.street|add_class:"form-control" }}
                     </div>
-                    
+
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_numero" class="form-label">Número</label>
-                        {{ form.number|add_class:"form-control"}}
+                        <label for="{{ form.neighborhood.id_for_label }}" class="form-label">Bairro</label>
+                        {{ form.neighborhood|add_class:"form-control" }}
                     </div>
                     
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_state" class="form-label">Estado</label>
+                        <label for="{{ form.city.id_for_label }}" class="form-label">Cidade</label>
+                        {{ form.city|add_class:"form-control" }}
+                    </div>
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <label for="{{ form.state.id_for_label }}" class="form-label">Estado</label>
                         {{ form.state|add_class:"form-control" }}
                     </div>
-                    
+
                     <div class="col-md-12 d-flex flex-column">
-                        <label for="id_city" class="form-label">Cidade</label>
-                        {{ form.city|add_class:"form-control" }}
+                        <label for="{{ form.number.id_for_label }}" class="form-label">Número</label>
+                        {{ form.number|add_class:"form-control"}}
                     </div>
                 </div>
                 {% include 'employees/partials/button_update.html' %}
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'employees/js/address.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Uni Gestão</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if url == 'home' %} active {% endif %}" aria-current="page" href="{% url 'home' %}">Admin</a>
+                </li>
+            </ul>
+
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <div class="btn-group justify-content-md-end" role="group">
+                        <button type="" class="btn btn-outline-secondary">Olá, {{ user.username }}</button>
+                        <button type="submit" class="btn btn-danger">Sair</button>
+                    </div>
+                </form>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>

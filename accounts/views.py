@@ -1,29 +1,18 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.views.generic import FormView, RedirectView
-from django.views import View
-from django.shortcuts import redirect, render
-
-
-class RegisterView(FormView):
-    template_name = 'accounts/register.html'
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+from django.shortcuts import redirect
 
 
 class LoginView(FormView):
     template_name = 'accounts/login.html'
     form_class = AuthenticationForm
-    success_url = reverse_lazy('cars_list')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
+        username = form.cleaned_data.get('username', None)
+        password = form.cleaned_data.get('password', None)
         user = authenticate(self.request, username=username, password=password)
         if user is not None:
             login(self.request, user)
