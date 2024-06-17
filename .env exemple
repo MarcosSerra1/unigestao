@@ -1,0 +1,14 @@
+SECRET_KEY="mude-me"
+
+# 0 False, 1 True
+DEBUG="mude-me"
+
+# Comma Separated values
+ALLOWED_HOSTS="mude-me"
+
+DB_ENGINE="mude-me"
+POSTGRES_DB="mude-me"
+POSTGRES_USER="mude-me"
+POSTGRES_PASSWORD="mude-me"
+POSTGRES_HOST="mude-me"
+POSTGRES_PORT="mude-me"
