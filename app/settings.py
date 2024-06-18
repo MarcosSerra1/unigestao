@@ -14,7 +14,13 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+# Define o caminho absoluto para a raiz do projeto
+project_root = os.path.dirname(os.path.dirname(__file__))
+
+# Constrói o caminho para o arquivo .env na raiz do projeto
+dotenv_path = os.path.join(project_root, '.env')
+
+# Verifica se o arquivo .env existe e carrega as variáveis de ambiente
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
