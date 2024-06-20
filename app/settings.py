@@ -160,3 +160,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# A variável SESSION_COOKIE_AGE recebe um valor inteiro que indica a quantidade de
+# segundos que a sessão vai durar. 1800 segundos é equivalente a 30 minutos.
+SESSION_COOKIE_AGE = 1800
+
+# O que ela irá fazer, como o próprio nome diz, é salvar toda a requisição do usuário da sessão.
+SESSION_SAVE_EVERY_REQUEST = True
