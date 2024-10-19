@@ -32,8 +32,11 @@ class Employee(models.Model):
     status = models.ForeignKey(EmployeeStatus, on_delete=models.PROTECT, related_name='employee_status', default=1)  # 1 represents "Ativo"
     create_at = models.DateTimeField(auto_now_add=True)
     admission_date = models.DateField(blank=True, null=True)
-    office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name='employee_office')
     dismissal_date = models.DateField(blank=True, null=True)
+
+    # CAMPOS PARA CARGOS
+    primary_office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name='primary_office')
+    secondary_office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name='secondary_office', blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
