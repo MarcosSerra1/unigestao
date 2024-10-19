@@ -39,6 +39,11 @@
             <div class="col-md-2 d-flex flex-column {% if object.status.id == 1 %}text-success{% else %}text-danger{% endif %}">
                 <p class="text-start"><strong>Status:</strong> {{ object.status }}</p>
             </div>
+            {% if object.status.id == 2 %}
+                <div class="col-md-4 d-flex flex-column">
+                    <p class="text-start"><strong>Data de demissão:</strong> {{ object.dismissal_date }}</p>
+                </div>
+            {% endif %}
 
             <br>
             <p>

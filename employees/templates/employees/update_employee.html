@@ -45,6 +45,10 @@
                     <label for="id_admission_date" class="form-label">Data de admissão:</label>
                     {{ form.admission_date|add_class:"form-control" }}
                 </div>
+                <div class="col-md-3 d-flex flex-column">
+                    <label for="id_admission_date" class="form-label">Data de demissão:</label>
+                    {{ form.dismissal_date|add_class:"form-control" }}
+                </div>
 
                 <div class="col-md-12 d-flex gap-2 mt-3">
                     <input type="submit" value="Salvar Alterações" class="btn btn-success">
