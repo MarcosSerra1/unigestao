@@ -34,7 +34,7 @@
                 <p class="text-start"><strong>Sexo:</strong> {{ object.sex }}</p>
             </div>
             <div class="col-md-2 d-flex flex-column">
-                <p class="text-start"><strong>Profissão:</strong> {{ object.office }}</p>
+                <p class="text-start"><strong>Profissão:</strong> {{ object.primary_office }} {% if object.secondary_office is not null %} | {{ object.secondary_office }} {% endif %}</p>
             </div>
             <div class="col-md-2 d-flex flex-column {% if object.status.id == 1 %}text-success{% else %}text-danger{% endif %}">
                 <p class="text-start"><strong>Status:</strong> {{ object.status }}</p>
