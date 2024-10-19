@@ -27,9 +27,10 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
           <th scope="col">CPF</th>
+          <th scope="col">E-mail</th>
           <th scope="col">Telefone</th>
+          <th scope="col">Pix</th>
           <th scope="col">Detalhes</th>
         </tr>
       </thead>
@@ -38,9 +39,10 @@
           <tr>
               <th scope="row">{{ person.id }}</th>
               <td>{{ person.name }}</td>
-              <td>{{ person.email }}</td>
               <td>{{ person.cpf }}</td>
+              <td>{{ person.email }}</td>
               <td>{{ person.contactinfo.phone_number }}</td>
+              <td>{{ person.formofpayment.pix }}</td>
               <td><a href="{% url 'employee_details' person.id %}">&nbsp &nbsp &nbsp<i class="fi fi-rr-eye text-info ms-2"></i></a></td>
           </tr>
         {% endfor %}
