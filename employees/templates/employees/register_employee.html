@@ -82,17 +82,17 @@
                         <label for="{{ person_form.sex.id_for_label }}" class="form-label">Sexo:</label>
                         {{ person_form.sex|add_class:"form-select" }}
                     </div>
-                    <div class="col-md-2 d-flex flex-column">
-                        <label for="{{ person_form.status.id_for_label }}" class="form-label">Status:</label>
-                        {{ person_form.status|add_class:"form-select" }}
-                    </div>
                     <div class="col-md-3 d-flex flex-column">
                         <label for="{{ person_form.admission_date.id_for_label }}" class="form-label">Data de admissão:</label>
                         {{ person_form.admission_date|add_class:"form-control" }}
                     </div>
                     <div class="col-md-3 d-flex flex-column">
-                        <label for="{{ person_form.office.id_for_label }}" class="form-label">Profissão:</label>
-                        {{ person_form.office|add_class:"form-select" }}
+                        <label for="{{ person_form.office.id_for_label }}" class="form-label">Profissão Primária:</label>
+                        {{ person_form.primary_office|add_class:"form-select" }}
+                    </div>
+                    <div class="col-md-3 d-flex flex-column">
+                        <label for="{{ person_form.office.id_for_label }}" class="form-label">Profissão Secundária:</label>
+                        {{ person_form.secondary_office|add_class:"form-select" }}
                     </div>
 
                     <h2 class="fw-light text-align-center">Contato</h2>
