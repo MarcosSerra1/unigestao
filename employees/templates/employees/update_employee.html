@@ -34,8 +34,10 @@
                     {{ form.sex|add_class:"form-select" }}
                 </div>
                 <div class="col-md-3 d-flex flex-column">
-                    <label for="id_sex" class="form-label">Profissão:</label>
-                    {{ form.office|add_class:"form-select" }}
+                    <label for="id_sex" class="form-label">Profissão Primária:</label>
+                    {{ form.primary_office|add_class:"form-select" }}
+                    <label for="id_sex" class="form-label">Profissão Secundária:</label>
+                    {{ form.secondary_office|add_class:"form-select" }}
                 </div>
                 <div class="col-md-2 d-flex flex-column">
                     <label for="id_sex" class="form-label">Status:</label>
