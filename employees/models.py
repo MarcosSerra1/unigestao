@@ -33,6 +33,7 @@ class Employee(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     admission_date = models.DateField(blank=True, null=True)
     office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name='employee_office')
+    dismissal_date = models.DateField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
