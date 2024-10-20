@@ -1,0 +1,39 @@
+<nav class="sidebar bg-light">
+    <div class="sidebar-header text-center py-3">
+        <!-- <button id="sidebarCollapse" class="btn btn-primary">
+            <i class="fi fi-rr-menu-burger"></i>
+        </button> -->
+    </div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'home' %}">
+                <i class="fi fi-rr-home"></i> 
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'employee' %}">
+                <i class="fi fi-rr-users"></i> 
+                <span>Funcionários</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fi fi-rr-building"></i> 
+                <span>Departamentos</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fi fi-rr-settings"></i> 
+                <span>Configurações</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="fi fi-rr-exit"></i>
+                <span>Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
