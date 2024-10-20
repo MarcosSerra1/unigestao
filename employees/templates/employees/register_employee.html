@@ -94,7 +94,12 @@
                         <label for="{{ person_form.office.id_for_label }}" class="form-label">Profissão Secundária:</label>
                         {{ person_form.secondary_office|add_class:"form-select" }}
                     </div>
-
+                    <div class"col-md-4 d-flex flex-column">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createOfficeModal">
+                            Criar Nova Profissão <i class="fi fi-rr-add"></i>
+                        </button>
+                    </div>
                     <h3 class="fw-light text-align-center">Contato</h3>
                     <div class="row row-cols-2 row-cols-lg-2">
                         <div class="col-md-12 d-flex flex-column">
@@ -166,6 +171,10 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    {% include 'employees/partials/create_office_modal.html' %}
 
 {% endblock %}
 
