@@ -3,61 +3,102 @@
 
 {% block content %}
 
-  <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+<div class="container d-flex justify-content-center align-items-center flex-column mt-5">
     <h2 class="fw-light text-align-center">Listagem de Funcionários</h2>
-  </div>
+</div>
 
-  <nav class="navbar">
+<nav class="navbar">
     <div class="container-fluid">
-      <form class="d-flex" role="search" method="GET" action="{% url 'employee' %}">
-        <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
-      <div class="row">
+        <form class="d-flex" role="search" method="GET" action="{% url 'employee' %}">
+            <input class="form-control me-2" type="text" name="search" placeholder="Buscar funcionário...">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+        <div class="row">
             <div class="float-end">
                 <a class="btn btn-outline-success" href="{% url 'register_employee' %}"><i class="fi fi-rr-user-add"></i></a>   
             </div>
-      </div>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <table class="table table-striped">
-    {% if persons %}
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nome</th>
-          <th scope="col">CPF</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Telefone</th>
-          <th scope="col">Pix</th>
-          <th scope="col">Detalhes</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for person in persons %}
-          <tr>
-              <th scope="row">{{ person.id }}</th>
-              <td>{{ person.name }}</td>
-              <td>{{ person.cpf }}</td>
-              <td>{{ person.email }}</td>
-              <td>{{ person.contactinfo.phone_number }}</td>
-              <td>{{ person.formofpayment.pix }}</td>
-              <td><a href="{% url 'employee_details' person.id %}">&nbsp &nbsp &nbsp<i class="fi fi-rr-eye text-info ms-2"></i></a></td>
-          </tr>
-        {% endfor %}
-      </tbody>
+<h2>Funcionários Ativos</h2>
+<table class="table table-striped">
+    {% if active_persons %}
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Pix</th>
+                <th scope="col">Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in active_persons %}
+                <tr>
+                    <th scope="row">{{ person.id }}</th>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.cpf }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.contactinfo.phone_number }}</td>
+                    <td>{{ person.formofpayment.pix }}</td>
+                    <td><a href="{% url 'employee_details' person.id %}">&nbsp &nbsp &nbsp<i class="fi fi-rr-eye text-info ms-2"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
     {% else %}
-      <tbody>
-        <tr>
-          <td colspan="4" class="text-center">
-            <div class="alert alert-warning" role="alert">
-              Nenhum funcionário encontrado.
-            </div>
-          </td>
-        </tr>
-      </tbody>
+        <tbody>
+            <tr>
+                <td colspan="7" class="text-center">
+                    <div class="alert alert-warning" role="alert">
+                        Nenhum funcionário ativo encontrado.
+                    </div>
+                </td>
+            </tr>
+        </tbody>
     {% endif %}
-  </table>
+</table>
+
+<h2>Funcionários Inativos</h2>
+<table class="table table-striped">
+    {% if inactive_persons %}
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Pix</th>
+                <th scope="col">Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in inactive_persons %}
+                <tr>
+                    <th scope="row">{{ person.id }}</th>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.cpf }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.contactinfo.phone_number }}</td>
+                    <td>{{ person.formofpayment.pix }}</td>
+                    <td><a href="{% url 'employee_details' person.id %}">&nbsp &nbsp &nbsp<i class="fi fi-rr-eye text-info ms-2"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    {% else %}
+        <tbody>
+            <tr>
+                <td colspan="7" class="text-center">
+                    <div class="alert alert-warning" role="alert">
+                        Nenhum funcionário inativo encontrado.
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    {% endif %}
+</table>
 
 {% endblock %}
