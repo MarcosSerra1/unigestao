@@ -5,9 +5,24 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db import transaction
-from django.views.generic import ListView, DetailView, UpdateView
-from employees.forms import EmployeeModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm
-from employees.models import Employee, ContactInfo, Address, FormOfPayment, EmployeeInventory
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from employees.forms import EmployeeModelForm, AddressModelForm, ContactInfoModelForm, FormOfPaymentModelForm, OfficeModelForm
+from employees.models import Employee, ContactInfo, Address, FormOfPayment, EmployeeInventory, Office
+
+
+class CreateOfficeView(CreateView):
+    model = Office
+    form_class = OfficeModelForm
+    template_name = 'register_employee.html'  # Ou o nome do seu template que você está usando
+    success_url = reverse_lazy('register_employee')  # Redireciona para a página de registro de funcionário após sucesso
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Nova profissão criada com sucesso.')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Erro ao criar a profissão.')
+        return super().form_invalid(form)
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -88,14 +103,20 @@ class CreateEmployeeView(View):
 class EmployeesListView(ListView):
     model = Employee
     template_name = 'employees/list_persons.html'
-    context_object_name = 'persons'
+    context_object_name = 'active_persons'  # Renomeie para active_persons
 
     def get_queryset(self):
-        person = super().get_queryset().order_by('name')
         search = self.request.GET.get('search')
         if search:
-            person = Employee.objects.filter(name__icontains=search)
-        return person
+            return Employee.objects.filter(name__icontains=search, status__status='Ativo').order_by('name')  # Filtra por ativos
+        return Employee.objects.filter(status__status='Ativo').order_by('name')  # Apenas ativos
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adiciona a lista de funcionários inativos ao contexto
+        context['inactive_persons'] = Employee.objects.filter(status__status='Inativo')  # Filtra por inativos
+        return context
+
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -201,3 +222,6 @@ class DeleteEmployeeView(View):
         employee.delete()
         messages.success(request, 'Funcionario Deletado com Sucesso!')
         return redirect('/employee/')
+    
+
+            
