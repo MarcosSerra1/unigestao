@@ -1,7 +1,6 @@
-/* Variaveis  */
+/* Variáveis */
 :root {
-    /* Colors */
-    --color-backgound: #f8f8f8;
+    --color-background: #f8f8f8;
     --color-grapefruit-strong: #DA4453;
     --color-grapefruit-weak: #ED5565;
     --color-bittersweet-strong: #E9573F;
@@ -14,14 +13,14 @@
 
 /* Estilo para o corpo */
 body {
-    background-color: var(--color-backgound);
+    background-color: var(--color-background);
     margin: 0;
     padding: 0;
 }
 
-a{
-    text-decoration: none; /* Remove o sublinhado padrão */
-    color: inherit; /* Herda a cor do texto do elemento pai */
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .button-bottom {
@@ -36,3 +35,28 @@ a{
     color: red;
 }
 
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.active {
+    width: 80px;
+}
+
+/* Ajusta o conteúdo principal quando o menu estiver recolhido */
+#main-content {
+    transition: margin-left 0.3s ease;
+    margin-left: 250px;
+}
+
+.sidebar.active ~ #main-content {
+    margin-left: 80px;
+}
