@@ -1,0 +1,21 @@
+<div class="modal fade" id="createOfficeModal" tabindex="-1" aria-labelledby="createOfficeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createOfficeModalLabel">Nova Profissão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createOfficeForm" method="post" action="{% url 'create_office' %}" class="form-horizontal">
+                    {% csrf_token %}
+                    <label for="office" class="form-label">Profissão:</label>
+                    <input type="text" name="office" maxlength="255" required id="office" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" form="createOfficeForm" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
