@@ -1,7 +1,14 @@
 from django import forms
-from employees.models import Employee, Address, ContactInfo, FormOfPayment
+from employees.models import Employee, Address, ContactInfo, FormOfPayment, Office
 from utils.validate_cpf import validar_cpf
 from utils.replace_special_characters import substituir_caracteres_especiais
+
+
+# Form Profissão
+class OfficeModelForm(forms.ModelForm):
+    class Meta:
+        model = Office
+        fields = '__all__'
 
 
 # Form Funcionario
